@@ -1,8 +1,6 @@
-package codex;
-
 import java.util.*;
 
-public class Dati extends Giocatore {
+public class Dati {
 	private String nome;
 	private Colore colore;
 	private Conteggio conteggio;

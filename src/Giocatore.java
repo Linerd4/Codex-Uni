@@ -1,5 +1,3 @@
-package codex;
-
 import java.util.*;
 
 public class Giocatore {
@@ -7,9 +5,9 @@ public class Giocatore {
 	private Tavolo tavolo;
 	private Comune comune;
 
-	public Giocatore(Dati dati, Tavolo tavolo, Comune comune) {
-		this.dati = dati;
-		this.tavolo = tavolo;
+	public Giocatore(Comune comune) {
+		this.dati = new Dati();
+		this.tavolo = new Tavolo();
 		this.comune = comune;
 	}
 
