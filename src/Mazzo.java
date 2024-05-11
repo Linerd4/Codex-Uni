@@ -29,7 +29,7 @@ public class Mazzo {
 	 * Costruttore di Mazzo. Prende in input la dimensione massima del mazzo.
 	 * @param dimensione
 	 */
-	Mazzo (int dimensione){
+	public Mazzo (int dimensione){
 		dimensioneMassimaMazzo = dimensione;	
 	}
 	
@@ -74,9 +74,4 @@ public class Mazzo {
 			return;
 	}
 
-
-
-
-	
-	
 }

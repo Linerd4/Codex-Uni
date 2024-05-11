@@ -11,7 +11,7 @@ public class Mazzino extends Mazzo {
 	 */
 	
 	
-	Mazzino(int dimensione){
+	public Mazzino(int dimensione){
 		super(dimensione);
 	}
 	
@@ -33,7 +33,6 @@ public class Mazzino extends Mazzo {
 		else
 			
 			return;
-		
 	}
 	
 	
@@ -44,6 +43,12 @@ public class Mazzino extends Mazzo {
 	public ArrayList<Carta> getMazzo() {
 		
 		return (ArrayList<Carta>) mazzo;		
+	}
+	
+	
+	public Carta pescaCarta(int scelta) {
+		
+		return mazzo.get(scelta);
 	}
 	
 	

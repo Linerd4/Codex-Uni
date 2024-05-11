@@ -1,10 +1,7 @@
-package src;
-
-
 import java.util.*;
 
-
 public class Oggetti {
+	
     private Oggetto oggetto_altosx, oggetto_altodx, oggetto_bassosx, oggetto_bassodx;
 
 
@@ -15,14 +12,17 @@ public class Oggetti {
     	this.oggetto_bassodx = oggetto_bassodx;
     }
 
+    
     public Oggetto getOggetto_altosx() {
         return oggetto_altosx;
     }
 
+    
     public Oggetto getOggetto_altodx() {
         return oggetto_altodx;
     }
 
+    
     public Oggetto getOggetto_bassosx() {
         return oggetto_bassosx;
     }

@@ -1,10 +1,7 @@
-package src;
-
-
 import java.util.*;
 
-
 public class Figure {
+	
     private Figura figura_altosx, figura_altodx, figura_bassosx, figura_bassodx;
 
 
@@ -19,10 +16,12 @@ public class Figure {
         return figura_altosx;
     }
 
+    
     public Figura getFigura_altodx() {
         return figura_altodx;
     }
 
+    
     public Figura getFigura_bassosx() {
         return figura_bassosx;
     }
