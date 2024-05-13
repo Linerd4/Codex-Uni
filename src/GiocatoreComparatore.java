@@ -6,11 +6,8 @@ public class GiocatoreComparatore implements Comparator{
 		Giocatore g1 = (Giocatore)o1;
 		Giocatore g2 = (Giocatore)o2;
 		
-		if (g1.getPunteggio() == g2.getPunteggio())
-			return 0;
-		else if (g1.getPunteggio() > g2.getPunteggio())
-			return 1;
-		else
-			return -1;
+		if (g1.getPunteggio() == g2.getPunteggio()) 	return 0;
+		else if (g1.getPunteggio() > g2.getPunteggio()) return 1;
+		else 											return -1;
 	}
 }

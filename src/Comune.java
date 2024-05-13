@@ -1,4 +1,3 @@
-
 public class Comune {
 
 	private Mazzo mazzoRisorse;

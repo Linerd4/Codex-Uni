@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Classifica {
 
-	private List<Giocatore> giocatori = new ArrayList<Giocatore>();
+	private List<Giocatore> giocatori;
 	
 	
 	/**
@@ -11,6 +11,7 @@ public class Classifica {
 	 */
 	public Classifica(List<Giocatore> giocatori){
 		
+		this.giocatori = new ArrayList<Giocatore>();
 		this.giocatori = giocatori;
 	}
 	

@@ -7,11 +7,11 @@ public class Dati {
 	private int punteggio;
 
 	
-	public Dati(String nome, Colore colore, Conteggio conteggio, int punteggio) {
+	public Dati(String nome, Colore colore, Conteggio conteggio) {
 		this.nome = nome;
 		this.colore = colore;
 		this.conteggio = conteggio;
-		this.punteggio = punteggio;
+		this.punteggio = 0;
 	}
 
 	

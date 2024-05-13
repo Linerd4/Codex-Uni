@@ -6,9 +6,9 @@ public class Giocatore {
 	private Comune comune;
 
 	
-	public Giocatore(Comune comune) {
-		this.dati = new Dati();
-		this.tavolo = new Tavolo();
+	public Giocatore(Dati dati, Tavolo tavolo, Comune comune) {
+		this.dati = dati;
+		this.tavolo = tavolo;
 		this.comune = comune;
 	}
 
@@ -35,7 +35,7 @@ public class Giocatore {
 	}
 	
 	
-	public Color getColore() {
+	public Colore getColore() {
 		return dati.getColore();
 	}
 	

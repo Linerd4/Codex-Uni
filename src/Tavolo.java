@@ -14,6 +14,8 @@ public class Tavolo {
 	public Tavolo() {
 		
 		matrice = new Carta[100][100];
+		disponibili = new ArrayList<Carta>();
+		listaCarte = new ArrayList<Carta>();
 	}
 	
 	
