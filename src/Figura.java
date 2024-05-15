@@ -1,7 +1,7 @@
 public enum Figura {
-    FOGLIA,
-    LUPO,
-    FARFALLA,
-    FUNGO,
-    NULL
+    FOGLIA,		// 1
+    LUPO,		// 2
+    FARFALLA,	// 3
+    FUNGO,		// 4
+    NULL		// 5
 }
