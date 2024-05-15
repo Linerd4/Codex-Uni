@@ -5,11 +5,11 @@ public class Oggetti {
     private Oggetto oggetto_altosx, oggetto_altodx, oggetto_bassosx, oggetto_bassodx;
 
 
-    public Oggetti(Oggetto oggetto_altosx, Oggetto oggetto_altodx, Oggetto oggetto_bassosx, Oggetto oggetto_bassodx) {
-    	this.oggetto_altosx = oggetto_altosx;
-    	this.oggetto_altodx = oggetto_altodx;
-    	this.oggetto_bassosx = oggetto_bassosx;
-    	this.oggetto_bassodx = oggetto_bassodx;
+    public Oggetti(Oggetto oggetto[]) {
+    	this.oggetto_altosx = oggetto[0];
+    	this.oggetto_altodx = oggetto[1];
+    	this.oggetto_bassosx = oggetto[2];
+    	this.oggetto_bassodx = oggetto[3];
     }
 
     

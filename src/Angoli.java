@@ -9,12 +9,12 @@ public class Angoli {
 	private Visibilità visibilita;
 	
 	
-	public Angoli(Oggetti oggetti, Figure figure, Posizione posizioni, Sovrapposizione sovrapposizioni, Visibilità visibilita) {
+	public Angoli(Oggetti oggetti, Figure figure, Visibilità visibilita) {
 		
 		this.oggetti = oggetti;
 		this.figure = figure;
-		this.posizioni = posizioni;
-		this.sovrapposizioni = sovrapposizioni;
+		this.posizioni = null;
+		this.sovrapposizioni = null;
 		this.visibilita = visibilita;
 	}
 	

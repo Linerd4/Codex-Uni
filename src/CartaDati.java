@@ -1,22 +1,19 @@
 public class CartaDati {
-    private Regno regno;
+    
+	private Regno regno;
     private int punti;
     private int latoScelto;
-    private int id;
     private int considerata;
-    private Giocatore giocatore;
 	private Object figura_altosx;
 	private Object figura_altodx;
 	private Object figura_bassosx;
 	private Object figura_bassodx;
 
-    public CartaDati(Regno regno, int punti, int latoScelto, int id, int considerata, Giocatore giocatore) {
+    public CartaDati(Regno regno, int punti) {
     	this.regno = regno;
     	this.punti = punti;
-    	this.latoScelto = latoScelto;
-    	this.id = id;
-    	this.considerata = considerata;
-    	this.giocatore = giocatore;
+    	this.latoScelto = 0;
+    	this.considerata = 0;
     }
 
     public Regno getRegno() {
@@ -25,10 +22,6 @@ public class CartaDati {
 
     public int getPunti() {
         return punti;
-    }
-
-    public int getId() {
-        return id;
     }
 
     public int getConsiderata() {

@@ -1,3 +1,5 @@
+import java.io.FileNotFoundException;
+
 public class Comune {
 
 	private Mazzo mazzoRisorse;
@@ -8,12 +10,12 @@ public class Comune {
 	private Mazzino dueOro;
 	private Mazzino dueObiettivi;
 	
-	public Comune() {
+	public Comune() throws FileNotFoundException {
 		
-		mazzoRisorse = new Mazzo(40);
-		mazzoOro = new Mazzo(40);
-		mazzoObiettivo = new Mazzo(16);
-		mazzoIniziale = new Mazzo(6);
+		mazzoRisorse = new Mazzo(40, 0);
+		mazzoOro = new Mazzo(40, 1);
+		mazzoObiettivo = new Mazzo(16, 2);
+		mazzoIniziale = new Mazzo(6, 3);
 		dueRisorse = new Mazzino(2);
 		dueOro = new Mazzino(2);
 		dueObiettivi = new Mazzino(2);

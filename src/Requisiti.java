@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Requisiti {
 
-	private List<Figura> figure;
+	private Figura[] figure;
 	private Oggetto oggetto;
 	
 	
@@ -11,7 +11,7 @@ public class Requisiti {
 	 * @param oggetto
 	 * @param figure
 	 */
-	public Requisiti(Oggetto oggetto, List<Figura> figure){
+	public Requisiti(Oggetto oggetto, Figura[] figure){
 		
 		this.oggetto = oggetto;
 		this.figure = figure;
@@ -22,7 +22,7 @@ public class Requisiti {
 	 * Restistuisci una lista di figure.
 	 * @return
 	 */
-	public List<Figura> getFigure() {
+	public Figura[] getFigure() {
 		
 		return figure;
 	}

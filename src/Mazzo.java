@@ -1,14 +1,290 @@
 import java.util.*;
+import java.util.Scanner;
+import java.io.*;
+
 
 public class Mazzo {
 
+	
 	/**
 	 * Una lista generica di carte, che possono essere di tipo Risorsa, Oro, Iniziali e Obiettivo.
 	 */
 	protected List<Carta> mazzo = new ArrayList<Carta>();
+	protected int dimensioneMassimaMazzo;
+	
+	
+	/**
+	 * Costruttore di Mazzo. Prende in input la dimensione massima del mazzo.
+	 * @param dimensione
+	 * @throws FileNotFoundException 
+	 */
+	public Mazzo (int dimensione, int tipoMazzo) throws FileNotFoundException{
+		dimensioneMassimaMazzo = dimensione;
+		switch(tipoMazzo) {
+		
+			case 0:
+				mazzo = creaMazzoRisorse();
+			case 1:
+				mazzo = creaMazzoOro();
+			case 2:
+				mazzo = creaMazzoObiettivo();
+			case 3:
+				mazzo = creaMazzoIniziale();
+				
+		}
+	}
 	
 	
 	
+	
+	
+	private List<Carta> creaMazzoIniziale() throws FileNotFoundException{
+		List<Carta> mazzoIniziale = new ArrayList<Carta>();
+		Scanner sc = new Scanner(new
+				FileInputStream(
+				new File("src/Iniziali.txt")));
+		
+		String str;
+		
+		for(int c = 0; c < 6; c++) {
+			str = sc.nextLine();
+			
+			Regno regnoTemp = null;
+			
+			switch((int) str.charAt(0)) {
+				
+				case 1:		regnoTemp = Regno.VEGETALE;
+				case 2:		regnoTemp = Regno.ANIMALE;
+				case 3:		regnoTemp = Regno.FUNGALE;
+				case 4:		regnoTemp = Regno.INSETTALE;
+				case 5:		regnoTemp = Regno.NULL;
+			}
+			
+			
+			CartaDati dati = new CartaDati(regnoTemp, str.charAt(1));
+			
+			Oggetto[] oggetti = new Oggetto[4];
+			int cont = 0;
+			for(int i = 2; i < 6; i++) {
+				
+				switch((int)str.charAt(i)) {
+					case 1: oggetti[cont] = Oggetto.PERGAMENA;
+					case 2: oggetti[cont] = Oggetto.BOCCETTA;
+					case 3: oggetti[cont] = Oggetto.PIUMA;
+					case 4: oggetti[cont] = Oggetto.ANGOLO;
+					case 5: oggetti[cont] = Oggetto.NULL;
+				}
+				cont++;
+			}
+			
+			
+			//FIGURA
+			Figura[] figure = new Figura[4];
+			cont = 0;
+			for(int i = 6; i < 10; i++) {
+				
+				switch((int)str.charAt(i)) {
+					case 1: figure[cont] = Figura.FOGLIA;
+					case 2: figure[cont] = Figura.LUPO;
+					case 3: figure[cont] = Figura.FARFALLA;
+					case 4: figure[cont] = Figura.FUNGO;
+					case 5: figure[cont] = Figura.NULL;
+				}
+				cont++;
+			}
+				
+
+			
+			Oggetti oggettiTemp = new Oggetti(oggetti);	
+			Figure figureTemp = new Figure(figure);
+			Visibilità visibilites = new Visibilità((int) str.charAt(10), (int) str.charAt(11), (int) str.charAt(12),	(int) str.charAt(13));
+			Angoli angoli = new Angoli(oggettiTemp, figureTemp, visibilites);
+			Carta carta = new Carta(dati, angoli);
+			
+			mazzoRisorse.add(carta);	
+		}	
+		return mazzoRisorse;
+	}
+
+
+
+
+
+	private List<Carta> creaMazzoObiettivo() throws FileNotFoundException{
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+
+
+	private List<Carta> creaMazzoOro() throws FileNotFoundException{
+		List<Carta> mazzoOro = new ArrayList<Carta>();
+		Scanner sc = new Scanner(new
+				FileInputStream(
+				new File("src/Oro.txt")));
+		
+		String str;
+		
+		for(int c = 0; c < 40; c++) {
+			str = sc.nextLine();
+			
+			Regno regnoTemp = null;
+			
+			switch((int) str.charAt(0)) {
+				
+				case 1:		regnoTemp = Regno.VEGETALE;
+				case 2:		regnoTemp = Regno.ANIMALE;
+				case 3:		regnoTemp = Regno.FUNGALE;
+				case 4:		regnoTemp = Regno.INSETTALE;
+				case 5:		regnoTemp = Regno.NULL;
+			}
+			
+			
+			CartaDati dati = new CartaDati(regnoTemp, str.charAt(1));
+			
+			Oggetto[] oggetti = new Oggetto[4];
+			int cont = 0;
+			for(int i = 2; i < 6; i++) {
+				
+				switch((int)str.charAt(i)) {
+					case 1: oggetti[cont] = Oggetto.PERGAMENA;
+					case 2: oggetti[cont] = Oggetto.BOCCETTA;
+					case 3: oggetti[cont] = Oggetto.PIUMA;
+					case 4: oggetti[cont] = Oggetto.ANGOLO;
+					case 5: oggetti[cont] = Oggetto.NULL;
+				}
+				cont++;
+			}
+			
+			
+			//FIGURA
+			Figura[] figure = new Figura[4];
+			cont = 0;
+			for(int i = 6; i < 10; i++) {
+				
+				switch((int)str.charAt(i)) {
+					case 1: figure[cont] = Figura.FOGLIA;
+					case 2: figure[cont] = Figura.LUPO;
+					case 3: figure[cont] = Figura.FARFALLA;
+					case 4: figure[cont] = Figura.FUNGO;
+					case 5: figure[cont] = Figura.NULL;
+				}
+				cont++;
+			}
+
+			
+			Figura[] figureRichieste = new Figura[4];
+			cont = 0;
+			for(int i = 14; i < 18; i++) {
+				
+				switch((int)str.charAt(i)) {
+					case 1: figureRichieste[cont] = Figura.FOGLIA;
+					case 2: figureRichieste[cont] = Figura.LUPO;
+					case 3: figureRichieste[cont] = Figura.FARFALLA;
+					case 4: figureRichieste[cont] = Figura.FUNGO;
+					case 5: figureRichieste[cont] = Figura.NULL;
+				}
+				cont++;
+			}
+			
+			
+			Oggetto oggettoRichiesto;
+			switch((int)str.charAt(18)) {
+				case 1: oggettoRichiesto = Oggetto.PERGAMENA;
+				case 2: oggettoRichiesto = Oggetto.BOCCETTA;
+				case 3: oggettoRichiesto = Oggetto.PIUMA;
+				case 4: oggettoRichiesto = Oggetto.ANGOLO;
+				case 5: oggettoRichiesto = Oggetto.NULL;
+			}
+			
+			
+			Oggetti oggettiTemp = new Oggetti(oggetti);	
+			Figure figureTemp = new Figure(figure);
+			Visibilità visibilites = new Visibilità((int) str.charAt(10), (int) str.charAt(11), (int) str.charAt(12),	(int) str.charAt(13));
+			Requisiti requisiti = new Requisiti(oggettoRichiesto, figureRichieste);
+			Angoli angoli = new Angoli(oggettiTemp, figureTemp, visibilites);
+			Carta carta = new Carta(dati, angoli, requisiti);
+			mazzoOro.add(carta);	
+		}
+		return mazzoOro;
+	}
+
+
+
+
+
+	public List<Carta> creaMazzoRisorse() throws FileNotFoundException{
+		
+		List<Carta> mazzoRisorse = new ArrayList<Carta>();
+		Scanner sc = new Scanner(new
+				FileInputStream(
+				new File("src/Risorse.txt")));
+		
+		String str;
+		
+		for(int c = 0; c < 40; c++) {
+			str = sc.nextLine();
+			
+			Regno regnoTemp = null;
+			
+			switch((int) str.charAt(0)) {
+				
+				case 1:		regnoTemp = Regno.VEGETALE;
+				case 2:		regnoTemp = Regno.ANIMALE;
+				case 3:		regnoTemp = Regno.FUNGALE;
+				case 4:		regnoTemp = Regno.INSETTALE;
+				case 5:		regnoTemp = Regno.NULL;
+			}
+			
+			
+			CartaDati dati = new CartaDati(regnoTemp, str.charAt(1));
+			
+			Oggetto[] oggetti = new Oggetto[4];
+			int cont = 0;
+			for(int i = 2; i < 6; i++) {
+				
+				switch((int)str.charAt(i)) {
+					case 1: oggetti[cont] = Oggetto.PERGAMENA;
+					case 2: oggetti[cont] = Oggetto.BOCCETTA;
+					case 3: oggetti[cont] = Oggetto.PIUMA;
+					case 4: oggetti[cont] = Oggetto.ANGOLO;
+					case 5: oggetti[cont] = Oggetto.NULL;
+				}
+				cont++;
+			}
+			
+			
+			//FIGURA
+			Figura[] figure = new Figura[4];
+			cont = 0;
+			for(int i = 6; i < 10; i++) {
+				
+				switch((int)str.charAt(i)) {
+					case 1: figure[cont] = Figura.FOGLIA;
+					case 2: figure[cont] = Figura.LUPO;
+					case 3: figure[cont] = Figura.FARFALLA;
+					case 4: figure[cont] = Figura.FUNGO;
+					case 5: figure[cont] = Figura.NULL;
+				}
+				cont++;
+			}
+				
+
+			
+			Oggetti oggettiTemp = new Oggetti(oggetti);	
+			Figure figureTemp = new Figure(figure);
+			Visibilità visibilites = new Visibilità((int) str.charAt(10), (int) str.charAt(11), (int) str.charAt(12),	(int) str.charAt(13));
+			Angoli angoli = new Angoli(oggettiTemp, figureTemp, visibilites);
+			Carta carta = new Carta(dati, angoli);
+			
+			mazzoRisorse.add(carta);	
+		}	
+		return mazzoRisorse;
+	}
+
+
 	/**
 	 * Specifica la dimensione massima del mazzo.
 	 * Il suo valore sarà pari a:
@@ -17,21 +293,13 @@ public class Mazzo {
 	 * @value 2 se si tratta della classe figlia Mazzino 
 	 *  
 	 */
-	protected int dimensioneMassimaMazzo;
-	
 	public int getDimensioneMassimaMazzo() {
 		return dimensioneMassimaMazzo;
 	}
 	
 	
 	
-	/**
-	 * Costruttore di Mazzo. Prende in input la dimensione massima del mazzo.
-	 * @param dimensione
-	 */
-	public Mazzo (int dimensione){
-		dimensioneMassimaMazzo = dimensione;	
-	}
+	
 	
 	
 	
@@ -42,7 +310,6 @@ public class Mazzo {
 	public void mischia() {
 		Collections.shuffle(mazzo);
 	}
-	
 	
 	
 	/**
