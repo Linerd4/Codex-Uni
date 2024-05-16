@@ -32,6 +32,19 @@ public class Comune {
 	}
 	
 	
+	public void mischiaCarte() {
+		
+		mazzoRisorse.mischia();
+		mazzoOro.mischia();
+		mazzoObiettivo.mischia();
+		mazzoIniziale.mischia();
+		dueRisorse.mischia();
+		dueOro.mischia();
+		dueObiettivi.mischia();
+	}
+	
+	
+	
 	/**
 	 * Pesca una carta dal mazzo delle carte risorsa.
 	 * @return Carta

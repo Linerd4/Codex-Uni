@@ -12,7 +12,7 @@ public class Mazzino extends Mazzo {
 	
 	
 	public Mazzino(int dimensione){
-		super(dimensione);
+
 	}
 	
 	
