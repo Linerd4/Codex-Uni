@@ -4,10 +4,10 @@ public class CartaDati {
     private int punti;
     private int latoScelto;
     private int considerata;
-	private Object figura_altosx;
-	private Object figura_altodx;
-	private Object figura_bassosx;
-	private Object figura_bassodx;
+	private Figura figura_altosx;
+	private Figura figura_altodx;
+	private Figura figura_bassosx;
+	private Figura figura_bassodx;
 
     public CartaDati(Regno regno, int punti) {
     	this.regno = regno;
@@ -36,10 +36,10 @@ public class CartaDati {
         if (latoScelto == 0) {
             System.out.println("Il giocatore deve ancora decidere su quale lato giocare la carta.");
         } else if (latoScelto == 2) {
-        	this.figura_altosx = null;
-        	this.figura_altodx = null;
-        	this.figura_bassosx = null;
-        	this.figura_bassodx = null;
+        	this.figura_altosx = Figura.NULL;
+        	this.figura_altodx = Figura.NULL;
+        	this.figura_bassosx = Figura.NULL;
+        	this.figura_bassodx = Figura.NULL;
         }
             
         	int[] visibilita = getVisibilita();

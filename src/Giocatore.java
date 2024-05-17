@@ -4,12 +4,14 @@ public class Giocatore {
 	private Dati dati;
 	private Tavolo tavolo;
 	private Comune comune;
+	private int numeroTurno;
 
 	
 	public Giocatore(Dati dati, Tavolo tavolo, Comune comune) {
 		this.dati = dati;
 		this.tavolo = tavolo;
 		this.comune = comune;
+		this.numeroTurno = 0;
 	}
 
 	
@@ -37,6 +39,11 @@ public class Giocatore {
 	
 	public Colore getColore() {
 		return dati.getColore();
+	}
+	
+	public int getNumeroTurni() {
+		
+		return numeroTurno;
 	}
 	
 }

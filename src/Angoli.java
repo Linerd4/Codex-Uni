@@ -46,7 +46,7 @@ public class Angoli {
 	 */
 	public List<Figura> getFigure(){
 		
-		List<Figura> listaFigure = new ArrayList();
+		List<Figura> listaFigure = new ArrayList<Figura>();
 		
 		listaFigure.add(figure.getFigura_altodx());
 		listaFigure.add(figure.getFigura_altosx());
@@ -85,7 +85,7 @@ public class Angoli {
 	 */
 	public List<Carta> getSovrapposizioni(){
 		
-		List<Carta> listaSovrapposizioni = new ArrayList();
+		List<Carta> listaSovrapposizioni = new ArrayList<Carta>();
 		
 		listaSovrapposizioni.add(sovrapposizioni.getAltoDx());
 		listaSovrapposizioni.add(sovrapposizioni.getAltoSx());

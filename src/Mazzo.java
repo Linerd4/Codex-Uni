@@ -414,4 +414,15 @@ public class Mazzo {
 			return;
 	}
 
+	
+	
+	
+	
+	
+	public int getNumeroCarteNelMazzo() {
+		
+		return mazzo.size();
+	}
+	
+	
 }

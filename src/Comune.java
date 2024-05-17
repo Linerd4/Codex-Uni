@@ -44,6 +44,20 @@ public class Comune {
 	}
 	
 	
+	public int[] getNumeroCartePerMazzo() {
+		
+		int[] array = new int[2];
+		
+		array[0] = mazzoRisorse.getNumeroCarteNelMazzo();
+		array[1] = mazzoOro.getNumeroCarteNelMazzo();
+		
+		return array; 
+	}
+	
+	
+	
+	
+	
 	
 	/**
 	 * Pesca una carta dal mazzo delle carte risorsa.
