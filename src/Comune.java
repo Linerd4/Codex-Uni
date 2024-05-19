@@ -1,4 +1,5 @@
 import java.io.FileNotFoundException;
+import java.util.*;
 
 public class Comune {
 
@@ -10,15 +11,32 @@ public class Comune {
 	private Mazzino dueOro;
 	private Mazzino dueObiettivi;
 	
+	
 	public Comune() throws FileNotFoundException {
 		
-		mazzoRisorse = new Mazzo(40, 0);
-		mazzoOro = new Mazzo(40, 1);
-		mazzoObiettivo = new Mazzo(16, 2);
-		mazzoIniziale = new Mazzo(6, 3);
-		dueRisorse = new Mazzino(2);
-		dueOro = new Mazzino(2);
-		dueObiettivi = new Mazzino(2);
+		mazzoRisorse = new Mazzo(0);
+		mazzoOro = new Mazzo(1);
+		mazzoObiettivo = new Mazzo(2);
+		mazzoIniziale = new Mazzo(3);
+		
+		
+		List<Carta> duerisorse = new ArrayList<Carta>();
+		duerisorse.add(mazzoRisorse.pescaCarta());
+		duerisorse.add(mazzoRisorse.pescaCarta());
+		dueRisorse = new Mazzino(duerisorse, mazzoRisorse);
+		
+		
+		List<Carta> dueoro = new ArrayList<Carta>();
+		duerisorse.add(mazzoOro.pescaCarta());
+		duerisorse.add(mazzoOro.pescaCarta());	
+		dueOro = new Mazzino(dueoro, mazzoOro);
+		
+		
+		List<Carta> dueobiettivi = new ArrayList<Carta>();
+		duerisorse.add(mazzoObiettivo.pescaCarta());
+		duerisorse.add(mazzoObiettivo.pescaCarta());	
+		dueObiettivi = new Mazzino(dueobiettivi, mazzoObiettivo);
+
 	}
 	
 	
@@ -38,12 +56,15 @@ public class Comune {
 		mazzoOro.mischia();
 		mazzoObiettivo.mischia();
 		mazzoIniziale.mischia();
-		dueRisorse.mischia();
-		dueOro.mischia();
-		dueObiettivi.mischia();
 	}
 	
 	
+	
+	/**
+	 * Questo metodo è utilizzato *soltanto* all'interno della classe partita.
+	 * Restituisce un array di valori interi nei quali sono inserite le quantità di carte all'interno di MazzoRisorse e MazzoOro
+	 * @return
+	 */
 	public int[] getNumeroCartePerMazzo() {
 		
 		int[] array = new int[2];
@@ -96,7 +117,7 @@ public class Comune {
 	 */
 	public Carta scegliRisorsaMazzino(int scelta) {
 		
-		return dueRisorse.pescaCarta();
+		return dueRisorse.pescaCarta(scelta);
 	}
 	
 	
@@ -106,7 +127,23 @@ public class Comune {
 	 */
 	public Carta scegliOroMazzino(int scelta) {
 		
-		return dueOro.pescaCarta();
+		return dueOro.pescaCarta(scelta);
+	}
+	
+	
+	public List<Carta> getMazzini(){
+		
+		List<Carta> carteneimazzini = new ArrayList<Carta>();
+		
+		List<Carta> carteris = dueRisorse.getMazzino();
+		List<Carta> carteoro = dueRisorse.getMazzino();
+		
+		carteneimazzini.add(carteris.get(0));
+		carteneimazzini.add(carteris.get(1));
+		carteneimazzini.add(carteoro.get(0));
+		carteneimazzini.add(carteoro.get(1));
+
+		return carteneimazzini;
 	}
 	
 	

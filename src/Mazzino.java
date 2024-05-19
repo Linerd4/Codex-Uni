@@ -1,56 +1,39 @@
 import java.util.*;
 
-public class Mazzino extends Mazzo {
+public class Mazzino {
 
-	/**
-	 * Se è stata pescata una carta dal mazzino di due carte visibili sul tavolo, allora
-	 * rimpiazza la carta mancante con l'ultima carta che viene pescata dal mazzo più
-	 * grande.
-	 * 
-	 * @param mazzoOriginale
-	 */
+	private List<Carta> mazzino;
+	private Mazzo correlato;
 	
 	
-	public Mazzino(int dimensione){
+	public Mazzino(List<Carta> carte, Mazzo correlato){
 
+		mazzino = new ArrayList<Carta>();
+		
+		mazzino.add(carte.get(0));
+		mazzino.add(carte.get(1));
+		
+		this.correlato = correlato;
+		
 	}
 	
-	
-	/**
-	 * Se si ha pescato dal mazzino, si dovrà invocare questa funzione per riempire il mazzino di due carte visibile a tutti i giocatori.
-	 * Esempio per riempire il mazzino nelle altre funzioni:
-	 * 
-	 * riempiMazzino(grandeMazzo.pescaCarta());
-	 * 
-	 * @param carta
-	 */
-	public void riempiMazzino(Carta carta) {
-		
-		if(mazzo.size() < ((Mazzo) mazzo).getDimensioneMassimaMazzo() )
-			
-			mazzo.add(carta);
-		
-		else
-			
-			return;
-	}
-	
-	
-	/**
-	 * Restituisci il mazzino.
-	 * @return mazzo
-	 */
-	public ArrayList<Carta> getMazzo() {
-		
-		return (ArrayList<Carta>) mazzo;		
-	}
-	
-	
+	//attenzione, se scelta > 1 si rompe tutto
+	// non sono del tutto sicuro che possa funzionare, bisogna assolutamente debuggare qua!
 	public Carta pescaCarta(int scelta) {
 		
-		return mazzo.get(scelta);
+		Carta carta = mazzino.get(scelta);
+		
+		mazzino.remove(scelta);
+		mazzino.add(correlato.pescaCarta());
+		
+		return carta;
 	}
 	
+	
+	
+	public List<Carta> getMazzino(){
+		return mazzino;
+	}
 	
 	
 }

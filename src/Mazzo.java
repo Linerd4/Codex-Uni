@@ -10,7 +10,6 @@ public class Mazzo {
 	 * Una lista generica di carte, che possono essere di tipo Risorsa, Oro, Iniziali e Obiettivo.
 	 */
 	protected List<Carta> mazzo = new ArrayList<Carta>();
-	protected int dimensioneMassimaMazzo;
 	
 	
 	/**
@@ -18,8 +17,8 @@ public class Mazzo {
 	 * @param dimensione
 	 * @throws FileNotFoundException 
 	 */
-	public Mazzo (int dimensione, int tipoMazzo) throws FileNotFoundException{
-		dimensioneMassimaMazzo = dimensione;
+	public Mazzo (int tipoMazzo) throws FileNotFoundException{
+		
 		switch(tipoMazzo) {
 		
 			case 0:
@@ -358,22 +357,7 @@ public class Mazzo {
 	}
 
 
-	/**
-	 * Specifica la dimensione massima del mazzo.
-	 * Il suo valore sarà pari a:
-	 * @value 40 se si tratta di un mazzo di tipo Oro o Risorse
-	 * @value 16 se si tratta di tipo Iniziale o Obiettivo
-	 * @value 2 se si tratta della classe figlia Mazzino 
-	 *  
-	 */
-	public int getDimensioneMassimaMazzo() {
-		return dimensioneMassimaMazzo;
-	}
-	
-	
-	
-	
-	
+
 	
 	
 	/**
@@ -403,15 +387,12 @@ public class Mazzo {
 	
 	
 	/**
-	 * Aggiungi una carta al mazzo se quest'ultimo non ha raggiunto la sua dimensione massima.
+	 * Aggiungi una carta al mazzo.
 	 * @param carta
 	 */
 	public void aggiungiCarta(Carta carta) {
 		
-		if(mazzo.size() < ((Mazzo) mazzo).getDimensioneMassimaMazzo() )
-			mazzo.add(carta);
-		else
-			return;
+		mazzo.add(carta);
 	}
 
 	

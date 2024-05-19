@@ -8,7 +8,6 @@ public class Partita {
 	private Comune comune;
 	private int numeroGiocatori;
 	private int giocatoreCorrente;
-	private boolean flusso;
 	
 	
 	/**
@@ -18,8 +17,12 @@ public class Partita {
 	 */
 	public Partita(int n) throws FileNotFoundException {
 		
+		
+		
+		// Crea mazzi e mazzini, e riempili
 		this.comune = new Comune();
 		comune.mischiaCarte();
+		
 		
 		this.numeroGiocatori = n;
 		Scanner sc = new Scanner(System.in);
@@ -45,6 +48,10 @@ public class Partita {
 			
 			giocatori.add(giocatore);
 
+			giocatori.get(i).pescaCarta();
+			giocatori.get(i).pescaCarta();
+			giocatori.get(i).pescaCarta();
+			
 		}
 		classifica = new Classifica(giocatori);
 	}
@@ -56,19 +63,27 @@ public class Partita {
 	public void flussoDiGioco() {
 		
 		Random rand = new Random();
-		int turnoDi = rand.nextInt(numeroGiocatori);
+		giocatoreCorrente = rand.nextInt(numeroGiocatori);
 		
-		
+		int oldGiocatore;
+
 		do {
 			
+			giocatori.get(giocatoreCorrente).giocaCarta();
+			giocatori.get(giocatoreCorrente).pescaCarta();
 			
+			oldGiocatore = giocatoreCorrente;
 			
+			if( giocatoreCorrente == (numeroGiocatori - 1) )
+				giocatoreCorrente = 0;
+			else
+				giocatoreCorrente++;
+			
+			classifica.ordinaClassifica();
 			
 		}
-		while(!verificaConclusione(turnoDi));
-		
-		
-		
+		while(!verificaConclusione(oldGiocatore));
+				
 	}
 	
 	
@@ -124,11 +139,6 @@ public class Partita {
 		return risultato;
 	}
 	
-	
-	
-	
-	
-	
-	
+
 	
 }

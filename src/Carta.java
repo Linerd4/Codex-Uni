@@ -3,9 +3,10 @@ public class Carta {
     protected CartaDati dati;
     protected Angoli angoli;
     
-    public Carta() {
-        dati = new CartaDati(); 
-        angoli = new Angoli(); 
+    public Carta(CartaDati dati, Angoli angoli) {
+    	
+        this.dati = dati; 
+        this.angoli = angoli; 
     }
 }
 
