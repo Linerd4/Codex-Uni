@@ -1,3 +1,4 @@
+import java.awt.Point;
 import java.util.*;
 
 public class Giocatore {
@@ -20,10 +21,45 @@ public class Giocatore {
 	
 	public void giocaCarta() {
 		
+		// qui e' da stampare il proprio tavolo di gioco
+		System.out.println(tavolo.getMatrice());
+		// qui si stampa la carta obiettivo da sola
+		System.out.println(tavolo.getObiettivo());
+		// qui si stamano le carte disponibili da giocare
+		System.out.println(tavolo.getDisponibili());
+		
+		Scanner sc = new Scanner(System.in);
+		int scelta = 0;
+		int soprasotto;
+		boolean cartaNonValida = true;
+		
+		
+		do {
+			System.out.println("Quale carta vuoi giocare? (1 - 2 - 3");
+			scelta = sc.nextInt();
+			System.out.println("Vuoi giocarla sopra (1) oppure sotto (0) ?");
+			
+			soprasotto = sc.nextInt();	
+			tavolo.getCartaDaDisponibili(scelta).setLatoScelto(soprasotto);
+			
+			if((tavolo.getCartaDaDisponibili(scelta) instanceof CartaOro)&&(tavolo.getCartaDaDisponibili(scelta).getLatoScelto() == 1)) {
+				
+				// CONTROLLA I REQUISITI
+				if(cartaNonValida) System.out.println("Il lato scelto della carta oro non soddisfa i requisiti. Gioca l'altro lato oppure scegli una carta risorsa.");
+			
+			}else cartaNonValida = false;	
+		
+		}while(cartaNonValida);
 		
 		
 		
+		List<Point> posizioniValide = tavolo.analizzaMatrice();
+		System.out.println(posizioniValide);
 		
+		System.out.println("Dove vuoi posizionare la carta?");
+		int posizioneSceltaNellaMatrice = sc.nextInt();
+		
+		tavolo.posizionaCartaInMatrice(tavolo.giocaCartaDaDisponibili(scelta), posizioniValide.get(posizioneSceltaNellaMatrice));
 		
 		
 	}
