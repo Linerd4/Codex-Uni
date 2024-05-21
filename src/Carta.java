@@ -34,6 +34,19 @@ public class Carta {
 		
 		return angoli.getSovrapposizioni();
 	}
+
+	public Regno getRegno() {
+	
+		return dati.getRegno();
+	}
+	
+	public int getConsiderata() {
+		return dati.getConsiderata();
+	}
+	
+	public void setConsiderata(int considerazione) {
+		dati.setConsiderata(considerazione);
+	}
 	
     
 }

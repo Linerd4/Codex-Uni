@@ -19,6 +19,9 @@ public class Conteggio {
 		this.pergamene = 0;
 		this.piume = 0;
 	}
+
+	
+	
 	
 	
 	public void aggiornaConteggio() {

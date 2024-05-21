@@ -5,7 +5,7 @@ public class Tavolo {
 	
 	private List<Carta> disponibili;
 	private Carta matrice[][];
-	private Carta obiettivo;
+	private CartaObiettivo obiettivo;
 	
 	
 	/**
@@ -31,7 +31,7 @@ public class Tavolo {
 	 * Una volta che e' stata scelta la carta obiettivo, impostala nell'attributo obiettivo.
 	 * @param carta
 	 */
-	public void setObiettivoPrincipale(Carta carta) {
+	public void setObiettivoPrincipale(CartaObiettivo carta) {
 		
 		this.obiettivo = carta;
 	}
@@ -100,7 +100,7 @@ public class Tavolo {
 		return matrice;
 	}
 	
-	public Carta getObiettivo() {
+	public CartaObiettivo getObiettivo() {
 		return obiettivo;
 	}
 	

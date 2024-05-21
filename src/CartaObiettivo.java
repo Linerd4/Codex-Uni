@@ -6,4 +6,9 @@ public class CartaObiettivo extends Carta {
         super(); 
         requisiti = new ObiettivoRequisiti(); 
     }
+    
+    public ObiettivoRequisiti getRequisiti() {
+    	return requisiti;
+    }
+    
 }

@@ -123,5 +123,121 @@ public class Giocatore {
 		
 		return numeroTurno;
 	}
+
+
+
+
+
+	public void verificaObiettivo() {
+		ObiettivoRequisiti requisiti = tavolo.getObiettivo().getRequisiti();
+		Carta[][] matrice = tavolo.getMatrice();
+	
+		List<Carta> combinazioniCarte = new ArrayList<Carta>();
+		
+		if(requisiti.getTipoObiettivo() == 1) {		// diagonale
+			
+			for(int i = 0; i < 100; i++) {	
+				for(int j = 0; j < 100; j++) {
+					
+					if(matrice[i][j].getRegno() == requisiti.getRegni()[0]) {
+						
+						combinazioniCarte.add(matrice[i][j]);
+						if(matrice[i+1][j-1].getRegno() == requisiti.getRegni()[1]) {
+							combinazioniCarte.add(matrice[i+1][j-1]);
+							
+							
+							if(matrice[i+2][j-2].getRegno() == requisiti.getRegni()[2]) {
+								combinazioniCarte.add(matrice[i+2][j-2]);
+								
+								for(Carta c : combinazioniCarte) c.setConsiderata(1);
+								dati.setPunteggio(dati.getPunteggio() + 2);
+								for(Carta c : combinazioniCarte) combinazioniCarte.remove(c);
+								
+							} else for(Carta c : combinazioniCarte) combinazioniCarte.remove(c);
+						} else for(Carta c : combinazioniCarte) combinazioniCarte.remove(c);
+					} else for(Carta c : combinazioniCarte) combinazioniCarte.remove(c);
+				}	
+			}
+		}
+		
+		else if (requisiti.getTipoObiettivo() == 2) {	// L
+			for(int i = 0; i < 100; i++) {	
+				for(int j = 0; j < 100; j++) {
+					
+					if(matrice[i][j].getRegno() == requisiti.getRegni()[0]) {
+						
+						combinazioniCarte.add(matrice[i][j]);
+						if(matrice[i+2][j].getRegno() == requisiti.getRegni()[1]) {
+							combinazioniCarte.add(matrice[i+2][j]);
+							
+							
+							if(matrice[i+3][j+1].getRegno() == requisiti.getRegni()[2]) {
+								combinazioniCarte.add(matrice[i+3][j+1]);
+								
+								for(Carta c : combinazioniCarte) c.setConsiderata(1);
+								dati.setPunteggio(dati.getPunteggio() + 2);
+								for(Carta c : combinazioniCarte) combinazioniCarte.remove(c);
+								
+							} else for(Carta c : combinazioniCarte) combinazioniCarte.remove(c);
+						} else for(Carta c : combinazioniCarte) combinazioniCarte.remove(c);
+					} else for(Carta c : combinazioniCarte) combinazioniCarte.remove(c);
+				}	
+			}		
+		}
+		
+		else if (requisiti.getTipoObiettivo() == 3) {	// tris
+		
+			int qtaTris = 0;
+			
+			switch(requisiti.getFigure()[0]) {
+			
+				case FARFALLA:	qtaTris = dati.getFigure()[0];
+				case FOGLIA:	qtaTris = dati.getFigure()[1];
+				case FUNGO:		qtaTris = dati.getFigure()[2];
+				case LUPO:		qtaTris = dati.getFigure()[3];
+				default:		break;
+			}
+			
+			int punteggioDaApportare = qtaTris / 3;
+			dati.setPunteggio(dati.getPunteggio() + punteggioDaApportare);
+				
+		}
+		
+		else if (requisiti.getTipoObiettivo() == 4) {	// oggetto
+			
+			if(requisiti.getOggetti()[0] != requisiti.getOggetti()[1]) {		// se i tre oggetti sono diversi
+				
+				int minimo = dati.getQtaOggetti()[0];
+				
+				for(int i = 0; i < 3; i++) {
+					if(dati.getQtaOggetti()[i] < minimo)
+						minimo = dati.getQtaOggetti()[i];
+				}
+				
+				int punteggioApportato = minimo / 3;
+				dati.setPunteggio(dati.getPunteggio() + punteggioApportato);
+
+			}else {
+				
+				int qtaTris = 0;
+				
+				switch(requisiti.getOggetti()[0]) {
+				
+					case BOCCETTA:	qtaTris = dati.getFigure()[0];
+					case PERGAMENA:	qtaTris = dati.getFigure()[1];
+					case PIUMA:		qtaTris = dati.getFigure()[2];
+					default:		break;
+				}
+				
+				int punteggioDaApportare = qtaTris / 3;
+				dati.setPunteggio(dati.getPunteggio() + punteggioDaApportare);
+			}
+			
+			
+		}
+		
+		
+		
+	}
 	
 }

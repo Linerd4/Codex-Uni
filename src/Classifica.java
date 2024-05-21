@@ -16,6 +16,11 @@ public class Classifica {
 	}
 	
 	
+	public Giocatore getGiocatore(int index) {
+		return giocatori.get(index);
+	}
+	
+	
 	/**
 	 * Riordina la lista dei giocatori sulla base dei punteggi attuali. 
 	 * @param <T>
