@@ -6,6 +6,14 @@ public class CartaDati {
     private int considerata;
 
 
+    public CartaDati() {
+    	
+    	this.regno = Regno.NULL;
+    	this.punti = 0;
+    	this.latoScelto = 0;
+    	this.considerata = 0;
+    }
+    
     public CartaDati(Regno regno, int punti) {
     	this.regno = regno;
     	this.punti = punti;

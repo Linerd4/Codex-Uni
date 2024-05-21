@@ -125,11 +125,14 @@ public class Giocatore {
 	}
 
 
+	public CartaObiettivo getObiettivo() {
+		return tavolo.getObiettivo();
+	}
 
 
-
-	public void verificaObiettivo() {
-		ObiettivoRequisiti requisiti = tavolo.getObiettivo().getRequisiti();
+	public void verificaObiettivo(CartaObiettivo obiettivo) {
+		
+		ObiettivoRequisiti requisiti = obiettivo.getRequisiti();
 		Carta[][] matrice = tavolo.getMatrice();
 	
 		List<Carta> combinazioniCarte = new ArrayList<Carta>();
@@ -236,8 +239,24 @@ public class Giocatore {
 			
 		}
 		
+	
+		for(int i = 0; i < 100; i++) {
+			for(int j = 0; j < 100; j++) {
+				if(tavolo.getMatrice()[i][j] != null)
+					tavolo.getMatrice()[i][j].setConsiderata(0);
+			}
+		}
 		
 		
+	}
+	
+	
+	
+	
+	public void verificaObiettiviComuni(List<CartaObiettivo> carte) {
+		
+		for(int i = 0; i < 2; i++)
+			verificaObiettivo(carte.get(i));
 	}
 	
 }

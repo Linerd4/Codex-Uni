@@ -148,8 +148,10 @@ public class Partita {
 	public void conclusione() {
 		
 		
-		for(Giocatore c : giocatori)
-			c.verificaObiettivo();
+		for(Giocatore c : giocatori) {
+			c.verificaObiettivo(c.getObiettivo());
+			c.verificaObiettiviComuni(comune.getObiettivi());
+		}
 		
 		classifica.ordinaClassifica();
 		

@@ -97,7 +97,7 @@ public class Mazzo {
 
 			
 			Figure figureTemp1 = new Figure(figure1);
-			Figure figureTemp2 = new Figure(figure2);
+//			Figure figureTemp2 = new Figure(figure2);
 			Figure figureTemp3 = new Figure(figure3);	// questo sarebbe il retro
 			Visibilità visibilites1 = new Visibilità((int) str.charAt(4), (int) str.charAt(5), (int) str.charAt(6), (int) str.charAt(7));
 			Visibilità visibilites2 = new Visibilità(1, 1, 1, 1);
@@ -180,8 +180,8 @@ public class Mazzo {
 			}
 			
 			int tipo = (int) str.charAt(9);
-			
-			CartaObiettivo carta = new CartaObiettivo(figure, regni, oggetti, tipo);
+			ObiettivoRequisiti req = new ObiettivoRequisiti(figure, regni, oggetti, tipo);
+			CartaObiettivo carta = new CartaObiettivo(req);
 			mazzoObiettivo.add(carta);
 			
 		}
@@ -262,7 +262,7 @@ public class Mazzo {
 			}
 			
 			
-			Oggetto oggettoRichiesto;
+			Oggetto oggettoRichiesto = null;
 			switch((int) str.charAt(18)) {
 				case 1: oggettoRichiesto = Oggetto.PERGAMENA;
 				case 2: oggettoRichiesto = Oggetto.BOCCETTA;

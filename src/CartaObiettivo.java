@@ -1,10 +1,10 @@
-
 public class CartaObiettivo extends Carta {
+	
     protected ObiettivoRequisiti requisiti;
     
-    public CartaObiettivo() {
-        super(); 
-        requisiti = new ObiettivoRequisiti(); 
+    public CartaObiettivo(ObiettivoRequisiti req) {
+        super(new CartaDati(), new Angoli()); 
+        this.requisiti = req; 
     }
     
     public ObiettivoRequisiti getRequisiti() {

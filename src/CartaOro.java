@@ -1,9 +1,9 @@
-
 public class CartaOro extends Carta {
-    protected Requisiti requisiti;
     
-    public CartaOro() {
-        super(); 
-        requisiti = new Requisiti(); 
+	protected Requisiti requisiti;
+    
+    public CartaOro(CartaDati dati, Angoli angoli, Requisiti req) {
+        super(dati ,angoli); 
+        this.requisiti = req; 
     }
 }
