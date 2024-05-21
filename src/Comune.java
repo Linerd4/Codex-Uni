@@ -27,14 +27,14 @@ public class Comune {
 		
 		
 		List<Carta> dueoro = new ArrayList<Carta>();
-		duerisorse.add(mazzoOro.pescaCarta());
-		duerisorse.add(mazzoOro.pescaCarta());	
+		dueoro.add(mazzoOro.pescaCarta());
+		dueoro.add(mazzoOro.pescaCarta());	
 		dueOro = new Mazzino(dueoro, mazzoOro);
 		
 		
 		List<Carta> dueobiettivi = new ArrayList<Carta>();
-		duerisorse.add(mazzoObiettivo.pescaCarta());
-		duerisorse.add(mazzoObiettivo.pescaCarta());	
+		dueobiettivi.add(mazzoObiettivo.pescaCarta());
+		dueobiettivi.add(mazzoObiettivo.pescaCarta());	
 		dueObiettivi = new Mazzino(dueobiettivi, mazzoObiettivo);
 
 	}

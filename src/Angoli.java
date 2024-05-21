@@ -22,8 +22,8 @@ public class Angoli {
 		
 		this.oggetti = oggetti;
 		this.figure = figure;
-		this.posizioni = null;
-		this.sovrapposizioni = null;
+		this.posizioni = new Posizione(0, 0, 0, 0);
+		this.sovrapposizioni = new Sovrapposizione(null, null, null, null);
 		this.visibilita = visibilita;
 	}
 	

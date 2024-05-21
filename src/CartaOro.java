@@ -1,19 +1,12 @@
 public class CartaOro extends Carta {
-<<<<<<< HEAD
-    
-	protected Requisiti requisiti;
+
+    protected Requisiti requisiti;
     
     public CartaOro(CartaDati dati, Angoli angoli, Requisiti req) {
         super(dati ,angoli); 
         this.requisiti = req; 
-=======
-    protected Requisiti requisiti;
-
-    public CartaOro() {
-        super();
-        requisiti = new Requisiti(null, new Figura[0]);
->>>>>>> 60b739617ff90e6a15e79e891c11a5341536ca28
     }
+
 
     public boolean verificaRequisiti(Tavolo tavolo) {
         Oggetto oggettoRequisito = requisiti.getOggetto();

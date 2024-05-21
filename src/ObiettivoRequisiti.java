@@ -7,9 +7,9 @@ public class ObiettivoRequisiti {
 
     public ObiettivoRequisiti(Figura[] figure, Regno[] regni, Oggetto[] oggetti, int tipo) {
         
-    	this.figure = new Figura[3];
-        this.regni = new Regno[3];
-        this.oggetti = new Oggetto[3];
+    	this.figure = figure;
+        this.regni = regni;
+        this.oggetti = oggetti;
         this.tipoObiettivo = tipo;
     }
 
