@@ -1,64 +1,100 @@
+
 import java.util.*;
 import java.io.FileNotFoundException;
 
 public class Partita {
 
-	private List<Giocatore> giocatori;
-	private Classifica classifica;
-	private Comune comune;
-	private int numeroGiocatori;
-	private int giocatoreCorrente;
-	
-	
-	/**
-	 * Il costruttore della classe Partita inizializza tutto il tavolo di gioco, i mazzi con le relative carte e i giocatori con il loro nome e colore
-	 * @param n
-	 * @throws FileNotFoundException
-	 */
-	public Partita(int n) throws FileNotFoundException {
-		
-		
-		
-		// Crea mazzi e mazzini, e riempili
-		this.comune = new Comune();
-		comune.mischiaCarte();
-		
-		
-		this.numeroGiocatori = n;
-		Scanner sc = new Scanner(System.in);
-		String nome;
-		Colore colore;
-		
-		giocatori = new ArrayList<Giocatore>();
-		
-		for(int i = 0; i < n; i++) {
-			
-			System.out.println("Inserisci il nome del giocatore numero" + i+1 + ": ");
-			nome = sc.nextLine();
-			System.out.println("Inserisci il colore del giocatore numero" + i+1 + ": ");
-			System.out.println("1. Blu\n2. Rosso\n3. Verde\n4. Giallo\n5. Nero\n");
-			colore = (Colore) sc.nextLine();
-			// ci sarebbe da sistemare la casistica blah blah blah
-					
-			Conteggio conteggio = new Conteggio();
-			Dati dati = new Dati(nome, colore, conteggio);
-			Tavolo tavolo = new Tavolo();
-			
-			Giocatore giocatore = new Giocatore(dati, tavolo, comune);
-			
-			giocatori.add(giocatore);
-
-			giocatori.get(i).pescaCarta();
-			giocatori.get(i).pescaCarta();
-			giocatori.get(i).pescaCarta();
-			
-		}
-		classifica = new Classifica(giocatori);
-	}
-	
-	
-	
-	
+    private List<Giocatore> giocatori;
+    private Classifica classifica;
+    private Comune comune;
+    private int numeroGiocatori;
+    private int giocatoreCorrente;
+    
+    /**
+     * Il costruttore della classe Partita inizializza tutto il tavolo di gioco, i mazzi con le relative carte e i giocatori con il loro nome e colore
+     * @param n
+     * @throws FileNotFoundException
+     */
+    public Partita(int n) throws FileNotFoundException {
+        // Crea mazzi e mazzini, e riempili
+        this.comune = new Comune();
+        comune.mischiaCarte();
+        
+        this.numeroGiocatori = n;
+        Scanner sc = new Scanner(System.in);
+        String nome;
+        Colore colore = null;
+        
+        giocatori = new ArrayList<Giocatore>();
+        Set<Colore> coloriUsati = new HashSet<>();
+        
+        // Assegna il colore nero automaticamente al primo giocatore
+        colore = Colore.NERO;
+        giocatori.add(creaGiocatore("Primo Giocatore", colore));
+        coloriUsati.add(colore);
+        
+        // Permette agli altri giocatori di scegliere tra i colori rimanenti
+        for(int i = 1; i < n; i++) {
+            System.out.println("Inserisci il nome del giocatore numero " + (i + 1) + ": ");
+            nome = sc.nextLine();
+            colore = scegliColore(i, coloriUsati);
+            giocatori.add(creaGiocatore(nome, colore));
+            coloriUsati.add(colore);
+        }
+        
+        classifica = new Classifica(giocatori);
+    }
+    
+    private Giocatore creaGiocatore(String nome, Colore colore) {
+        Conteggio conteggio = new Conteggio();
+        Dati dati = new Dati(nome, colore, conteggio);
+        Tavolo tavolo = new Tavolo();
+        Giocatore giocatore = new Giocatore(dati, tavolo, comune);
+        
+        giocatore.pescaCarta();
+        giocatore.pescaCarta();
+        giocatore.pescaCarta();
+        
+        return giocatore;
+    }
+    
+    private Colore scegliColore(int indiceGiocatore, Set<Colore> coloriUsati) {
+        Scanner sc = new Scanner(System.in);
+        int scelta;
+        Colore coloreScelto;
+        
+        System.out.println("Giocatore " + (indiceGiocatore + 1) + ", scegli il tuo colore:");
+        do {
+            System.out.println("1. Blu");
+            System.out.println("2. Rosso");
+            System.out.println("3. Verde");
+            System.out.println("4. Giallo");
+            System.out.print("Scelta: ");
+            scelta = sc.nextInt();
+            sc.nextLine(); // Consuma il resto della linea
+            
+            switch (scelta) {
+                case 1:
+                    coloreScelto = Colore.BLU;
+                    break;
+                case 2:
+                    coloreScelto = Colore.ROSSO;
+                    break;
+                case 3:
+                    coloreScelto = Colore.VERDE;
+                    break;
+                case 4:
+                    coloreScelto = Colore.GIALLO;
+                    break;
+                default:
+                    System.out.println("Scelta non valida. Riprova.");
+                    coloreScelto = null;
+            }
+        } while (coloreScelto == null || coloriUsati.contains(coloreScelto));
+        
+        return coloreScelto;
+    }
+    
 	
 	public void flussoDiGioco() {
 		

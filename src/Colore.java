@@ -1,8 +1,8 @@
 public enum Colore {
-    BLU,
-    ROSSO,
-    VERDE,
-    GIALLO,
-    NERO,
-    NULL
+    BLU,	//1
+    ROSSO,	//2
+    VERDE,	//3
+    GIALLO,	//4
+    NERO,	
+    NULL	
 }
