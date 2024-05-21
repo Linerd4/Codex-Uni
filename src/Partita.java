@@ -141,4 +141,23 @@ public class Partita {
 	
 
 	
+	
+	
+	
+	
+	public void conclusione() {
+		
+		
+		for(Giocatore c : giocatori)
+			c.verificaObiettivo();
+		
+		classifica.ordinaClassifica();
+		
+		System.out.println("Il giocatore vincitore e'" + classifica.getGiocatore(0) + "!");
+		
+		return;
+	}
+	
+	
+	
 }
