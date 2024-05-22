@@ -18,7 +18,6 @@ public class Partita {
     public Partita(int n) throws FileNotFoundException {
         // Crea mazzi e mazzini, e riempili
         this.comune = new Comune();
-        comune.mischiaCarte();
         
         this.numeroGiocatori = n;
         Scanner sc = new Scanner(System.in);
@@ -43,6 +42,8 @@ public class Partita {
         }
         
         classifica = new Classifica(giocatori);
+        
+        sc.close();
     }
     
     private Giocatore creaGiocatore(String nome, Colore colore) {
@@ -51,10 +52,26 @@ public class Partita {
         Tavolo tavolo = new Tavolo();
         Giocatore giocatore = new Giocatore(dati, tavolo, comune);
         
-        giocatore.pescaCarta();
-        giocatore.pescaCarta();
-        giocatore.pescaCarta();
+        giocatore.pescaCartaInizializzazione(1);
+        giocatore.pescaCartaInizializzazione(1);
+        giocatore.pescaCartaInizializzazione(2);
+        giocatore.pescaCartaInizializzazione(3);
         
+        CartaObiettivo[] dueObiettivi = new CartaObiettivo[2];
+        dueObiettivi = comune.dueObiettiviPerGiocatore();
+        
+        System.out.println(dueObiettivi);
+        System.out.println("Quale delle due carte obiettivo scegli?");
+        Scanner sc = new Scanner(System.in);
+        
+        String stringa = sc.nextLine();
+        
+        int obb = Character.getNumericValue(stringa.charAt(0));
+        
+        tavolo.setObiettivoPrincipale(dueObiettivi[obb]);
+        // la carta obiettivo non scelta viene persa, ma questo non provoca problemi.
+        
+        sc.close();
         return giocatore;
     }
     
@@ -64,7 +81,7 @@ public class Partita {
         Colore coloreScelto;
         
         System.out.println("Giocatore " + (indiceGiocatore + 1) + ", scegli il tuo colore:");
-        do {
+        do {        
             System.out.println("1. Blu");
             System.out.println("2. Rosso");
             System.out.println("3. Verde");
@@ -92,6 +109,7 @@ public class Partita {
             }
         } while (coloreScelto == null || coloriUsati.contains(coloreScelto));
         
+        sc.close();
         return coloreScelto;
     }
     
@@ -186,7 +204,7 @@ public class Partita {
 		
 		for(Giocatore c : giocatori) {
 			c.verificaObiettivo(c.getObiettivo());
-			c.verificaObiettiviComuni(comune.getObiettivi());
+			c.verificaObiettiviComuni((CartaObiettivo) comune.getObiettivi());
 		}
 		
 		classifica.ordinaClassifica();

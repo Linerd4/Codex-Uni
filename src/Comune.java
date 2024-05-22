@@ -50,15 +50,7 @@ public class Comune {
 	}
 	
 	
-	public void mischiaCarte() {
-		
-		mazzoRisorse.mischia();
-		mazzoOro.mischia();
-		mazzoObiettivo.mischia();
-		mazzoIniziale.mischia();
-	}
-	
-	
+
 	
 	/**
 	 * Questo metodo è utilizzato *soltanto* all'interno della classe partita.
@@ -149,6 +141,17 @@ public class Comune {
 	
 	public List<Carta> getObiettivi() {
 		return dueObiettivi.getMazzino();
+	}
+
+
+	public CartaObiettivo[] dueObiettiviPerGiocatore() {
+		
+		CartaObiettivo[] dueObXGioc = new CartaObiettivo[2];
+		
+		dueObXGioc[0] = (CartaObiettivo) mazzoObiettivo.pescaCarta();
+		dueObXGioc[1] = (CartaObiettivo) mazzoObiettivo.pescaCarta();
+		
+		return dueObXGioc;
 	}
 	
 	

@@ -121,7 +121,7 @@ public class Mazzo {
 			
 		}	
 		
-		System.out.println("lmao");
+		Collections.shuffle(mazzoIniziale);
 		return mazzoIniziale;
 	}
 
@@ -195,6 +195,7 @@ public class Mazzo {
 			
 		}
 
+		Collections.shuffle(mazzoObiettivo);
 		return mazzoObiettivo;
 	}
 
@@ -293,7 +294,7 @@ public class Mazzo {
 			CartaOro carta = new CartaOro(dati, angoli, requisiti);
 			mazzoOro.add(carta);	
 		}
-		System.out.println("lmao");
+		Collections.shuffle(mazzoOro);
 		return mazzoOro;
 	}
 
@@ -370,18 +371,11 @@ public class Mazzo {
 			mazzoRisorse.add(carta);	
 		}	
 		
-		System.out.println("lmao");
+		Collections.shuffle(mazzoRisorse);
 		return mazzoRisorse;
 	}
 
 	
-	/**
-	 * Mischia il mazzo di carte.
-	 * Viene richiamata la funzione shuffle() di Collections.
-	 */
-	public void mischia() {
-		Collections.shuffle(mazzo);
-	}
 	
 	
 	/**

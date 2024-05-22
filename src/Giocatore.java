@@ -61,6 +61,9 @@ public class Giocatore {
 	    int posizioneSceltaNellaMatrice = sc.nextInt();
 	    
 	    tavolo.posizionaCartaInMatrice(tavolo.giocaCartaDaDisponibili(scelta), posizioniValide.get(posizioneSceltaNellaMatrice));
+	
+	    sc.close();
+	
 	}
 
 
@@ -100,7 +103,7 @@ public class Giocatore {
 		// per funzionare funzionera: bisogna aggiungere la verifica che l'utente abbia sempre due carte risorsa e una oro,
 		// e questa attuale implementazione non fa questo controllo
 		
-		
+		sc.close();
 		
 	}
 	
@@ -257,6 +260,35 @@ public class Giocatore {
 		
 		for(int i = 0; i < 2; i++)
 			verificaObiettivo(carte.get(i));
+	}
+
+
+
+
+
+	public void pescaCartaInizializzazione(int i) {
+		switch(i) {
+		
+			case 1:
+				tavolo.scegliCartaDaComune(comune.assegnaCartaRisorsa());
+				break;
+			case 2:
+				tavolo.scegliCartaDaComune(comune.assegnaCartaOro());
+				break;
+				
+			case 3:
+				Scanner sc = new Scanner(System.in);
+				CartaIniziale iniz = (CartaIniziale) comune.assegnaCartaIniziale();
+				System.out.println("Questa e' la tua carta iniziale: " + iniz);
+				System.out.println("Vuoi giocare la carta sul fronte o sul retro?");
+				
+				iniz.setLatoScelto(sc.nextInt());
+				tavolo.posizionaCartaInMatrice(iniz, new Point(50, 50));
+				
+				break;
+				
+		}
+		
 	}
 	
 }
