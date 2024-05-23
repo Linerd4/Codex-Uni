@@ -14,7 +14,10 @@ public class Carta {
     	
     	return dati.getLatoScelto();
     }
-    
+	
+    public List<Figura> getFigure() {
+        return angoli.getFigure();
+    }
     
     public void setLatoScelto(int lato) {
 
@@ -26,10 +29,11 @@ public class Carta {
     	
     	return angoli.getVisibilita();
     }
-    
-    
-    
 	
+     public int[] getPosizioni() {
+        return angoli.getPosizioni();
+    }
+    
 	public List<Carta> getSovrapposizioni(){
 		
 		return angoli.getSovrapposizioni();
