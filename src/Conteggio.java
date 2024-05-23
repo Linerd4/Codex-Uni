@@ -24,8 +24,40 @@ public class Conteggio {
 	
 	
 	
-	public void aggiornaConteggio() {
-	}
+public void aggiornaConteggio(CartaIniziale cartaIniziale) {
+    // Ottieni le figure presenti sulla carta iniziale
+    List<Figura> figure = cartaIniziale.getFigure();
+    
+    // Incrementa i contatori delle figure presenti sulla carta iniziale
+    for (Figura figura : figure) {
+        switch (figura) {
+            case BOCCETTA:
+                boccetta++;
+                break;
+            case FARFALLA:
+                farfalle++;
+                break;
+            case FOGLIA:
+                foglie++;
+                break;
+            case FUNGO:
+                funghi++;
+                break;
+            case LUPO:
+                lupi++;
+                break;
+            case PERGAMENA:
+                pergamene++;
+                break;
+            case PIUMA:
+                piume++;
+                break;
+            default:
+                
+                break;
+        }
+    }
+}
 	
 	
 	public int getBoccetta() {
