@@ -284,6 +284,9 @@ public class Giocatore {
 				
 				iniz.setLatoScelto(sc.nextInt());
 				tavolo.posizionaCartaInMatrice(iniz, new Point(50, 50));
+
+				 // Aggiorna il conteggio delle figure sulla carta iniziale
+                                 conteggio.aggiornaConteggio(iniz);
 				
 				break;
 				
