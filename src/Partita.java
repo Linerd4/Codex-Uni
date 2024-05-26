@@ -204,7 +204,7 @@ public class Partita {
 		
 		for(Giocatore c : giocatori) {
 			c.verificaObiettivo(c.getObiettivo());
-			c.verificaObiettiviComuni((CartaObiettivo) comune.getObiettivi());
+			c.verificaObiettiviComuni( comune.getObiettivi());
 		}
 		
 		classifica.ordinaClassifica();

@@ -139,7 +139,7 @@ public class Comune {
 	}
 	
 	
-	public List<Carta> getObiettivi() {
+	public List<CartaObiettivo> getObiettivi() {
 		return dueObiettivi.getMazzino();
 	}
 

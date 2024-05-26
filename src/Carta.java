@@ -19,6 +19,12 @@ public class Carta {
         return angoli.getFigure();
     }
     
+    public List<Oggetto> getOggetti() {
+        return angoli.getOggetti();
+    }
+    
+    
+    
     public void setLatoScelto(int lato) {
 
     	dati.setLatoScelto(lato);

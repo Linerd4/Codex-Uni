@@ -27,7 +27,7 @@ public class Classifica {
 	 */
 	public void ordinaClassifica() {
 		
-		Collections.sort(giocatori, new GiocatoreComparatore());
+		Collections.sort(giocatori, new GiocatoreComparatore().reversed());
 	}
 	
 }
