@@ -14,6 +14,7 @@ public class CartaDati {
     	this.considerata = 0;
     }
     
+    
     public CartaDati(Regno regno, int punti) {
     	this.regno = regno;
     	this.punti = punti;
@@ -21,18 +22,22 @@ public class CartaDati {
     	this.considerata = 0;
     }
 
+    
     public Regno getRegno() {
         return regno;
     }
 
+    
     public int getPunti() {
         return punti;
     }
 
+    
     public int getConsiderata() {
         return considerata;
     }
 
+    
     public void setConsiderata(int i) {
         considerata = i;
     }
@@ -41,7 +46,6 @@ public class CartaDati {
     public int getLatoScelto() {
     	return latoScelto;
     }
-    
     
     
     public void setLatoScelto(int latoScelto) {

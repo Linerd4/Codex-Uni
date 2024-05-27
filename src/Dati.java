@@ -1,5 +1,3 @@
-import java.util.*;
-
 public class Dati {
 	private String nome;
 	private Colore colore;
@@ -17,11 +15,7 @@ public class Dati {
 	public void aggiornaConteggio(Carta matrice[][]) {
 		conteggio.aggiornaConteggio(matrice);
 	}
-	
-	public void aggiornaConteggio(CartaIniziale carta) {
-		conteggio.aggiornaConteggio(carta);
-	}
-	
+
 	
 	public int[] getQtaOggetti() {
 		

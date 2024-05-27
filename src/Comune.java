@@ -33,8 +33,8 @@ public class Comune {
 		
 		
 		List<Carta> dueobiettivi = new ArrayList<Carta>();
-		dueobiettivi.add(mazzoObiettivo.pescaCarta());
-		dueobiettivi.add(mazzoObiettivo.pescaCarta());	
+		dueobiettivi.add((CartaObiettivo) mazzoObiettivo.pescaCarta());
+		dueobiettivi.add((CartaObiettivo) mazzoObiettivo.pescaCarta());	
 		dueObiettivi = new Mazzino(dueobiettivi, mazzoObiettivo);
 
 	}
@@ -140,7 +140,14 @@ public class Comune {
 	
 	
 	public List<CartaObiettivo> getObiettivi() {
-		return dueObiettivi.getMazzino();
+		
+		List<Carta> carte = dueObiettivi.getMazzino();
+		List<CartaObiettivo> obb = new ArrayList<CartaObiettivo>();
+		
+		for(Carta c : carte)
+			obb.add((CartaObiettivo) c);
+		
+		return obb;
 	}
 
 

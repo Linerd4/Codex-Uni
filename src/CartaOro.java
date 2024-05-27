@@ -8,22 +8,14 @@ public class CartaOro extends Carta {
     }
 
 
-    public boolean verificaRequisiti(Tavolo tavolo) {
-        Oggetto oggettoRequisito = requisiti.getOggetto();
-        Figura[] figureRequisito = requisiti.getFigure();
-        
-        // Verifica se l'oggetto requisito della carta oro coincide con l'oggetto del tavolo
-        if (oggettoRequisito != null && tavolo.getObiettivo().getOggetto() != oggettoRequisito) {
-            return false;
-        }
+    public boolean verificaRequisiti(int figure[]) {
 
-        // Verifica se tutte le figure requisito della carta oro sono presenti nel tavolo
-        for (Figura figura : figureRequisito) {
-            if (!tavolo.contieneFigura(figura)) {
-                return false;
-            }
-        }
-
+    	for(int i = 0 ; i < 4; i++) {
+    		
+    		if(requisiti.getQtaFigure()[i] < figure[i])
+    			return false;
+    	}
+    	    	
         return true;
     }
 }

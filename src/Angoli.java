@@ -9,6 +9,9 @@ public class Angoli {
 	private Visibilità visibilita;
 	
 	
+	/**
+	 * Un costruttore che prende zero paramentri, utile solo per la costruzione di una carta obiettivo.
+	 */
 	public Angoli() {
 		this.oggetti = null;
 		this.figure = null;
@@ -17,6 +20,7 @@ public class Angoli {
 		this.visibilita = null;
 		
 	}
+	
 	
 	public Angoli(Oggetti oggetti, Figure figure, Visibilità visibilita) {
 		
@@ -77,10 +81,10 @@ public class Angoli {
 		
 		int listaPosizioni[] = new int[4];
 		
-		listaPosizioni[0] = posizioni.getAltodx();
-		listaPosizioni[1] = posizioni.getAltosx();
-		listaPosizioni[2] = posizioni.getBassodx();
-		listaPosizioni[3] = posizioni.getBassosx();
+		listaPosizioni[0] = posizioni.getAltoDx();
+		listaPosizioni[1] = posizioni.getAltoSx();
+		listaPosizioni[2] = posizioni.getBassoDx();
+		listaPosizioni[3] = posizioni.getBassoSx();
 
 		return listaPosizioni;
 	}
@@ -122,6 +126,32 @@ public class Angoli {
 		listaVisibilita[3] = visibilita.getBassoSx();
 
 		return listaVisibilita;
+	}
+	
+	
+	/**
+	 * Imposta le visibilita' (presente / assente) dei singoli angoli.
+	 * @param vis
+	 */
+	public void setVisibilita(int[] vis) {
+		
+		visibilita.setAltoSx(vis[0]);
+		visibilita.setAltoDx(vis[1]);
+		visibilita.setBassoSx(vis[2]);
+		visibilita.setBassoDx(vis[3]);
+	}
+	
+	
+	/**
+	 * Imposta le singole posizioni (sopra / sotto) dei singoli angoli.
+	 * @param pos
+	 */
+	public void setPosizione(int[] pos) {
+		
+		posizioni.setAltoSx(pos[0]);
+		posizioni.setAltoDx(pos[1]);
+		posizioni.setBassoSx(pos[2]);
+		posizioni.setBassoDx(pos[3]);
 	}
 	
 }
