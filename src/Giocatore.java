@@ -16,9 +16,6 @@ public class Giocatore {
 	}
 
 
-	
-	
-	
 	public void giocaCarta() {
 	    // Stampa il tavolo di gioco
 	    System.out.println(tavolo.getMatrice());
@@ -34,18 +31,27 @@ public class Giocatore {
 	    
 	    
 	    do {
-	        System.out.println("Quale carta vuoi giocare? (1 - 2 - 3)");
-	        scelta = sc.nextInt();
-	        System.out.println("Vuoi giocarla sopra (1) oppure sotto (0)?");
-	        soprasotto = sc.nextInt();
-
-	        Carta cartaScelta = tavolo.getCartaDaDisponibili(scelta);
+	    	
+	    	do {
+	    		System.out.println("Quale carta vuoi giocare? (1 - 2 - 3)");
+	    		scelta = Character.getNumericValue(sc.nextLine().charAt(0));
+	    	} while( (scelta<=0) || (scelta>=4) );
+	        
+	        
+	    	do {
+	        	System.out.println("Vuoi giocarla sopra (1) oppure sotto (2)?");
+	        	soprasotto = Character.getNumericValue(sc.nextLine().charAt(0));
+	    	} while((soprasotto<=0) || (soprasotto>=3));
+	    		
+	    		
+	        Carta cartaScelta = tavolo.getCartaDaDisponibili(scelta - 1);
 	        cartaScelta.setLatoScelto(soprasotto);
 
 	        if (cartaScelta instanceof CartaOro && cartaScelta.getLatoScelto() == 1) {
 	            CartaOro cartaOro = (CartaOro) cartaScelta;
-	            if (!cartaOro.verificaRequisiti(tavolo)) {
+	            if (!cartaOro.verificaRequisiti(dati.getFigure())) {
 	                System.out.println("Il lato scelto della carta oro non soddisfa i requisiti. Gioca l'altro lato oppure scegli una carta risorsa.");
+	                cartaNonValida = true;
 	            } else {
 	                cartaNonValida = false;
 	            }
@@ -57,17 +63,21 @@ public class Giocatore {
 	    List<Point> posizioniValide = tavolo.analizzaMatrice();
 	    System.out.println(posizioniValide);
 
-	    System.out.println("Dove vuoi posizionare la carta?");
-	    int posizioneSceltaNellaMatrice = sc.nextInt();
-	    
-	    tavolo.posizionaCartaInMatrice(tavolo.giocaCartaDaDisponibili(scelta), posizioniValide.get(posizioneSceltaNellaMatrice));
+	    int posizioneSceltaNellaMatrice = 0;
+	    do {
+	    	System.out.println("Dove vuoi posizionare la carta?");
+	    	posizioneSceltaNellaMatrice = Character.getNumericValue(sc.nextLine().charAt(0));
+	    	
+	    } while((posizioneSceltaNellaMatrice<=0) || (posizioneSceltaNellaMatrice>posizioniValide.size()));
+	    	
+	    	
+	    tavolo.posizionaCartaInMatrice(tavolo.giocaCartaDaDisponibili(scelta - 1), posizioniValide.get(posizioneSceltaNellaMatrice - 1));
 	
 	    dati.aggiornaConteggio(tavolo.getMatrice());
 	    
-	    sc.close();
-	
+	    numeroTurno++;
+	    
 	}
-
 
 	
 	public void pescaCarta() {
@@ -75,16 +85,12 @@ public class Giocatore {
 		
 		System.out.println("Queste sono le carte risorse e oro scoperte:");
 		
-		
-		
-		
-		
 		//si ok, qui stampa solo la lista di indirizzi
 		// va fatta la grafica che stampa tutte e quattro le carte
 		System.out.println(comune.getMazzini());
 		
-		if(comune.getMazzini().size() > 3)
-			System.out.println("Attenzione, il giocatore ha piu di quattro carte!");
+//		if(comune.getMazzini().size() > 3)
+//			System.out.println("Attenzione, il giocatore ha piu di quattro carte!");
 		
 		Scanner sc = new Scanner(System.in);
 		String scelta = null; 
@@ -99,25 +105,44 @@ public class Giocatore {
 			
 				case 1:
 					tavolo.scegliCartaDaComune(comune.assegnaCartaRisorsa());
+					break;
 				
+					
 				case 2:
 					tavolo.scegliCartaDaComune(comune.assegnaCartaOro());
-				
+					break;
+					
+					
 				case 3:
-					System.out.println("Quale delle due carte risorsa vuoi prendere? (1: la prima | 2: la seconda)");
-					int scelta2 = sc.nextInt();
-					tavolo.scegliCartaDaComune(comune.scegliRisorsaMazzino(scelta2));
-				
+					
+					int scelta2 = 0;
+					do{
+						System.out.println("Quale delle due carte risorsa vuoi prendere? (1: la prima | 2: la seconda)");
+						scelta2 = Character.getNumericValue(sc.nextLine().charAt(0));
+					
+					}while( (scelta2 <= 0) || (scelta2 >= 3) );
+					tavolo.scegliCartaDaComune(comune.scegliRisorsaMazzino(scelta2 - 1));
+					break;
+					
+					
 				case 4:
-					System.out.println("Quale delle due carte oro vuoi prendere? (1: la prima | 2: la seconda)");
-					int scelta3 = sc.nextInt();
-					tavolo.scegliCartaDaComune(comune.scegliOroMazzino(scelta3));
+					int scelta3 = 0;
+					do {
+						System.out.println("Quale delle due carte oro vuoi prendere? (1: la prima | 2: la seconda)");
+						scelta3 = Character.getNumericValue(sc.nextLine().charAt(0));
+							
+					}while( (scelta3 <= 0) || (scelta3 >= 3) );
+					tavolo.scegliCartaDaComune(comune.scegliOroMazzino(scelta3 - 1));
+					break;
+					
+				default:
+					System.out.println("Scelta invalida, riprova.");
+					break;
 			}
 			
-		}while(((Character.getNumericValue(scelta.charAt(0))) > 0) && (Character.getNumericValue(scelta.charAt(0))) < 4);
+		}while(((Character.getNumericValue(scelta.charAt(0))) <= 0) || (Character.getNumericValue(scelta.charAt(0))) >= 5);
 	
 		
-		sc.close();
 		
 	}
 	
@@ -136,6 +161,7 @@ public class Giocatore {
 		return dati.getColore();
 	}
 	
+	
 	public int getNumeroTurni() {
 		
 		return numeroTurno;
@@ -152,56 +178,70 @@ public class Giocatore {
 		ObiettivoRequisiti requisiti = obiettivo.getRequisiti();
 		Carta[][] matrice = tavolo.getMatrice();
 	
-		List<Carta> combinazioniCarte = new ArrayList<Carta>();
+		List<Carta> combinazioniCarte;
+		
+		
 		
 		if(requisiti.getTipoObiettivo() == 1) {		// diagonale
 			
 			for(int i = 0; i < 100; i++) {	
 				for(int j = 0; j < 100; j++) {
 					
-					if(matrice[i][j].getRegno() == requisiti.getRegni()[0]) {
+					combinazioniCarte = new ArrayList<Carta>();
+					
+					if( (matrice[i][j]!=null) && (matrice[i][j].getRegno() == requisiti.getRegni()[0]) ) {
 						
 						combinazioniCarte.add(matrice[i][j]);
-						if(matrice[i+1][j-1].getRegno() == requisiti.getRegni()[1]) {
+						if( ( matrice[i+1][j-1]!=null ) && (matrice[i+1][j-1].getRegno() == requisiti.getRegni()[1])) {
 							combinazioniCarte.add(matrice[i+1][j-1]);
 							
 							
-							if(matrice[i+2][j-2].getRegno() == requisiti.getRegni()[2]) {
+							if(( matrice[i+2][j-2]!=null ) && (matrice[i+2][j-2].getRegno() == requisiti.getRegni()[2])) {
 								combinazioniCarte.add(matrice[i+2][j-2]);
 								
 								for(Carta c : combinazioniCarte) c.setConsiderata(1);
 								dati.setPunteggio(dati.getPunteggio() + 2);
-								for(Carta c : combinazioniCarte) combinazioniCarte.remove(c);
 								
-							} else for(Carta c : combinazioniCarte) combinazioniCarte.remove(c);
-						} else for(Carta c : combinazioniCarte) combinazioniCarte.remove(c);
-					} else for(Carta c : combinazioniCarte) combinazioniCarte.remove(c);
+							}
+						}
+					}
+					
+					combinazioniCarte = null;
+				
+				
 				}	
 			}
 		}
 		
-		else if (requisiti.getTipoObiettivo() == 2) {	// L
+		else if (requisiti.getTipoObiettivo() == 2) {		// L
+			
+			
+			
 			for(int i = 0; i < 100; i++) {	
 				for(int j = 0; j < 100; j++) {
 					
-					if(matrice[i][j].getRegno() == requisiti.getRegni()[0]) {
+					combinazioniCarte = new ArrayList<Carta>();
+					
+					if( (matrice[i][j] != null) && (matrice[i][j].getRegno() == requisiti.getRegni()[0])) {
 						
 						combinazioniCarte.add(matrice[i][j]);
-						if(matrice[i+2][j].getRegno() == requisiti.getRegni()[1]) {
+						if(( matrice[i+2][j]!=null ) && (matrice[i+2][j].getRegno() == requisiti.getRegni()[1])) {
 							combinazioniCarte.add(matrice[i+2][j]);
 							
 							
-							if(matrice[i+3][j+1].getRegno() == requisiti.getRegni()[2]) {
+							if(( matrice[i+3][j+1]!=null ) && (matrice[i+3][j+1].getRegno() == requisiti.getRegni()[2])) {
 								combinazioniCarte.add(matrice[i+3][j+1]);
 								
 								for(Carta c : combinazioniCarte) c.setConsiderata(1);
-								dati.setPunteggio(dati.getPunteggio() + 2);
-								for(Carta c : combinazioniCarte) combinazioniCarte.remove(c);
+								dati.setPunteggio(dati.getPunteggio() + 3);
 								
-							} else for(Carta c : combinazioniCarte) combinazioniCarte.remove(c);
-						} else for(Carta c : combinazioniCarte) combinazioniCarte.remove(c);
-					} else for(Carta c : combinazioniCarte) combinazioniCarte.remove(c);
-				}	
+								
+							}
+						}
+					}
+					
+					combinazioniCarte = null;
+				}
 			}		
 		}
 		
@@ -219,7 +259,7 @@ public class Giocatore {
 			}
 			
 			int punteggioDaApportare = qtaTris / 3;
-			dati.setPunteggio(dati.getPunteggio() + punteggioDaApportare);
+			dati.setPunteggio(dati.getPunteggio() + punteggioDaApportare * 2);
 				
 		}
 		
@@ -235,7 +275,7 @@ public class Giocatore {
 				}
 				
 				int punteggioApportato = minimo / 3;
-				dati.setPunteggio(dati.getPunteggio() + punteggioApportato);
+				dati.setPunteggio(dati.getPunteggio() + punteggioApportato * 2);
 
 			}else {
 				
@@ -250,7 +290,7 @@ public class Giocatore {
 				}
 				
 				int punteggioDaApportare = qtaTris / 3;
-				dati.setPunteggio(dati.getPunteggio() + punteggioDaApportare);
+				dati.setPunteggio(dati.getPunteggio() + punteggioDaApportare * 2);
 			}
 		}
 		
@@ -261,21 +301,14 @@ public class Giocatore {
 					tavolo.getMatrice()[i][j].setConsiderata(0);
 			}
 		}
-		
-		
 	}
-	
-	
-	
+
 	
 	public void verificaObiettiviComuni(List<CartaObiettivo> carte) {
 		
 		for(int i = 0; i < 2; i++)
 			verificaObiettivo(carte.get(i));
 	}
-
-
-
 
 
 	public void pescaCartaInizializzazione(int i) {
@@ -292,15 +325,24 @@ public class Giocatore {
 			case 3:
 				Scanner sc = new Scanner(System.in);
 				CartaIniziale iniz = (CartaIniziale) comune.assegnaCartaIniziale();
-				System.out.println("Questa e' la tua carta iniziale: " + iniz);
-				System.out.println("Vuoi giocare la carta sul fronte o sul retro?");
+				int latoscelto = 0;
 				
-				iniz.setLatoScelto(sc.nextInt());
+				do {
+					System.out.println("Questa e' la tua carta iniziale: " + iniz);
+					System.out.println("Vuoi giocare la carta sul fronte (1) o sul retro (2)?");
+					
+					String temp = sc.nextLine();
+					
+					System.out.println(temp.charAt(0));
+					
+					latoscelto = Character.getNumericValue(temp.charAt(0));
+					
+				}while( (latoscelto <= 0) || (latoscelto >= 3) );
+				
+				iniz.setLatoScelto(latoscelto - 1);
 				tavolo.posizionaCartaInMatrice(iniz, new Point(50, 50));
 				
-				break;
-				
+				break;		
 		}
 	}
-	
 }

@@ -117,9 +117,11 @@ public class Mazzo {
 			
 			CartaIniziale carta = new CartaIniziale(dati, angoli1, figure2, angoli2);
 			
+			
 			mazzoIniziale.add(carta);
 			
 		}	
+		
 		
 		Collections.shuffle(mazzoIniziale);
 		return mazzoIniziale;
@@ -195,6 +197,7 @@ public class Mazzo {
 			
 		}
 
+		
 		Collections.shuffle(mazzoObiettivo);
 		return mazzoObiettivo;
 	}
@@ -294,6 +297,9 @@ public class Mazzo {
 			CartaOro carta = new CartaOro(dati, angoli, requisiti);
 			mazzoOro.add(carta);	
 		}
+		
+		
+		
 		Collections.shuffle(mazzoOro);
 		return mazzoOro;
 	}
@@ -370,6 +376,7 @@ public class Mazzo {
 			
 			mazzoRisorse.add(carta);	
 		}	
+		
 		
 		Collections.shuffle(mazzoRisorse);
 		return mazzoRisorse;

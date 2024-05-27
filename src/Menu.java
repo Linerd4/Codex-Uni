@@ -11,7 +11,7 @@ public class Menu {
             System.out.println("2. Esci");
             System.out.print("Scelta: ");
 
-            int scelta = scanner.nextInt();
+            int scelta = Character.getNumericValue(scanner.nextLine().charAt(0));
 
             switch (scelta) {
                 case 1:

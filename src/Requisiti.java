@@ -28,6 +28,48 @@ public class Requisiti {
 	}
 	
 	
+	public int[] getQtaFigure() {
+		
+		int qtaFarfalla = 0;
+		int qtaFoglia = 0;
+		int qtaFungo = 0;
+		int qtaLupo = 0;
+		
+		int[] qta = new int[4];
+		
+		for(Figura fig : figure) {
+			
+			switch(fig) {
+			
+				case FARFALLA:
+					qtaFarfalla++;
+					break;
+				
+				case FOGLIA:
+					qtaFoglia++;
+					break;
+					
+				case FUNGO:
+					qtaFungo++;
+					break;
+					
+				case LUPO:
+					qtaLupo++;
+					break;
+			}
+			
+		}
+		
+		qta[0] = qtaFarfalla;
+		qta[1] = qtaFoglia;
+		qta[2] = qtaFungo;
+		qta[3] = qtaLupo;
+		
+		return qta;
+	}
+	
+	
+	
 	/**
 	 * Restituisci l'oggetto requisito.
 	 * @return

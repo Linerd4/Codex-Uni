@@ -79,7 +79,39 @@ public class Tavolo {
 	 */
 	public void posizionaCartaInMatrice(Carta carta, Point posizione) {
 		
-		matrice[(int)posizione.getX()][(int) posizione.getY()] = carta;
+		int x = (int) posizione.getX();
+		int y = (int) posizione.getY();
+		
+		matrice[x][y] = carta;
+	
+		if(matrice[x-1][y-1] != null) {
+			
+			int[] pos = matrice[x-1][y-1].getPosizioni();	
+			pos[3] = 0;	
+			matrice[x-1][y-1].setPosizioni(pos);			
+		}
+		
+		if(matrice[x-1][y+1] != null) {
+			
+			int[] pos = matrice[x-1][y+1].getPosizioni();	
+			pos[2] = 0;	
+			matrice[x-1][y+1].setPosizioni(pos);			
+		}
+		
+		if(matrice[x+1][y-1] != null) {
+			
+			int[] pos = matrice[x+1][y-1].getPosizioni();	
+			pos[1] = 0;	
+			matrice[x+1][y-1].setPosizioni(pos);			
+		}
+		
+		if(matrice[x+1][y+1] != null) {
+			
+			int[] pos = matrice[x+1][y+1].getPosizioni();	
+			pos[0] = 0;	
+			matrice[x+1][y+1].setPosizioni(pos);			
+		}
+	
 	}
 	
 	

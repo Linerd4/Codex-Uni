@@ -33,5 +33,21 @@ public class Visibilità implements GetItemAngoli{
 	public int getBassoDx() {
 		return bassoDx;
 	}	
+	
+	
+	public void setAltoSx(int newAltoSx) {
+		altoSx = newAltoSx;
+	}
+	
+	public void setAltoDx(int newAltoDx) {
+		altoDx = newAltoDx;
+	}
 
+	public void setBassoSx(int newBassoSx) {
+		bassoSx = newBassoSx;
+	}
+	
+	public void setBassoDx(int newBassoDx) {
+		bassoDx = newBassoDx;
+	}
 }
