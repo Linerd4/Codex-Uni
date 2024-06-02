@@ -8,10 +8,11 @@ public class Visibilità implements GetItemAngoli{
 	
 	public Visibilità(int altoSx, int altoDx, int bassoSx, int bassoDx) {
 		
-		this.altoDx = altoDx;
 		this.altoSx = altoSx;
-		this.bassoDx = bassoDx;
+		this.altoDx = altoDx;
 		this.bassoSx = bassoSx;
+		this.bassoDx = bassoDx;
+
 	}
 
 

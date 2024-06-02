@@ -264,9 +264,9 @@ public class Mazzo {
 			}
 
 			
-			Figura[] figureRichieste = new Figura[4];
+			Figura[] figureRichieste = new Figura[5];
 			cont = 0;
-			for(int i = 14; i < 18; i++) {
+			for(int i = 14; i < 19; i++) {
 				
 				switch( str.charAt(i) ) {
 					case '1' : figureRichieste[cont] = Figura.FOGLIA;		break;
@@ -280,7 +280,7 @@ public class Mazzo {
 			
 			
 			Oggetto oggettoRichiesto = null;
-			switch( str.charAt(18) ) {
+			switch( str.charAt(19) ) {
 				case '1' : oggettoRichiesto = Oggetto.PERGAMENA;	break;
 				case '2' : oggettoRichiesto = Oggetto.BOCCETTA;		break;
 				case '3' : oggettoRichiesto = Oggetto.PIUMA;		break;

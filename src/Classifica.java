@@ -30,4 +30,16 @@ public class Classifica {
 		Collections.sort(giocatori, new GiocatoreComparatore().reversed());
 	}
 	
+	
+	
+	public void stampaClassifica() {
+		
+		System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nClassifica attuale:");
+		for(int i = 0; i < giocatori.size(); i++) {
+			System.out.println(i + ") " + giocatori.get(i).getNome() + "\t" + giocatori.get(i).getPunteggio() + " punti");
+			
+		}
+		System.out.println();
+	}
+	
 }

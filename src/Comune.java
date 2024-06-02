@@ -128,7 +128,7 @@ public class Comune {
 		List<Carta> carteneimazzini = new ArrayList<Carta>();
 		
 		List<Carta> carteris = dueRisorse.getMazzino();
-		List<Carta> carteoro = dueRisorse.getMazzino();
+		List<Carta> carteoro = dueOro.getMazzino();
 		
 		carteneimazzini.add(carteris.get(0));
 		carteneimazzini.add(carteris.get(1));

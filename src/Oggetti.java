@@ -13,6 +13,14 @@ public class Oggetti {
     }
 
     
+    public void setOggetti(Oggetto[] oggetti) {
+    	this.oggetto_altosx = oggetti[0];
+    	this.oggetto_altodx = oggetti[1];
+    	this.oggetto_bassosx = oggetti[2];
+    	this.oggetto_bassodx = oggetti[3];
+    }
+    
+    
     public Oggetto getOggetto_altosx() {
         return oggetto_altosx;
     }

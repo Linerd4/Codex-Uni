@@ -26,7 +26,7 @@ public class Angoli {
 		
 		this.oggetti = oggetti;
 		this.figure = figure;
-		this.posizioni = new Posizione(0, 0, 0, 0);
+		this.posizioni = new Posizione(1, 1, 1, 1);
 		this.sovrapposizioni = new Sovrapposizione(null, null, null, null);
 		this.visibilita = visibilita;
 	}
@@ -35,17 +35,18 @@ public class Angoli {
 	/**
 	 * Restituisce gli oggetti che sono presenti all'interno di una carta.
 	 * Come valore di return viene restituito il riferimento ad una lista contentente gli oggetti agli angoli nel seguente ordine:
-	 * ALTODX - ALTOSX - BASSODX - BASSOSX
+	 * ALTOSX - ALTODX - BASSOSX - BASSODX
 	 * @return
 	 */
 	public List<Oggetto> getOggetti(){
 		
 		List<Oggetto> listaOggetti = new ArrayList<Oggetto>();
 		
-		listaOggetti.add(oggetti.getOggetto_altodx());
 		listaOggetti.add(oggetti.getOggetto_altosx());
-		listaOggetti.add(oggetti.getOggetto_bassodx());
+		listaOggetti.add(oggetti.getOggetto_altodx());
 		listaOggetti.add(oggetti.getOggetto_bassosx());
+		listaOggetti.add(oggetti.getOggetto_bassodx());
+		
 
 		return listaOggetti;
 	}
@@ -54,17 +55,17 @@ public class Angoli {
 	/**
 	 * Restituisce le figure che sono presenti all'interno di una carta.
 	 * Come valore di return viene restituito il riferimento ad una lista contentente le figure agli angoli nel seguente ordine:
-	 * ALTODX - ALTOSX - BASSODX - BASSOSX
+	 * ALTOSX - ALTODX - BASSOSX - BASSODX
 	 * @return
 	 */
 	public List<Figura> getFigure(){
 		
 		List<Figura> listaFigure = new ArrayList<Figura>();
 		
-		listaFigure.add(figure.getFigura_altodx());
 		listaFigure.add(figure.getFigura_altosx());
-		listaFigure.add(figure.getFigura_bassodx());
+		listaFigure.add(figure.getFigura_altodx());
 		listaFigure.add(figure.getFigura_bassosx());
+		listaFigure.add(figure.getFigura_bassodx());
 
 		return listaFigure;
 	}
@@ -73,7 +74,7 @@ public class Angoli {
 	/**
 	 * Restituisce la posizione (0 = sotto, 1 = sopra) degli angoli di una carta.
 	 * Come valore di return viene restituito un array di numeri interi nel seguente ordine:
-	 * ALTODX - ALTOSX - BASSODX - BASSOSX
+	 * ALTOSX - ALTODX - BASSOSX - BASSODX
 	 * @return 
 	 * @return
 	 */
@@ -81,10 +82,10 @@ public class Angoli {
 		
 		int listaPosizioni[] = new int[4];
 		
-		listaPosizioni[0] = posizioni.getAltoDx();
 		listaPosizioni[1] = posizioni.getAltoSx();
-		listaPosizioni[2] = posizioni.getBassoDx();
+		listaPosizioni[0] = posizioni.getAltoDx();
 		listaPosizioni[3] = posizioni.getBassoSx();
+		listaPosizioni[2] = posizioni.getBassoDx();
 
 		return listaPosizioni;
 	}
@@ -93,20 +94,29 @@ public class Angoli {
 	/**
 	 * Restituisce le carte posizionata agli angoli di una carta.
 	 * Come valore di return viene restituito una lista di carte nel seguente ordine:
-	 * ALTODX - ALTOSX - BASSODX - BASSOSX ; attenzione, da ricontrollare l'implementazione non appena e' stata definita la classe Sovrapposizione
+	 * ALTOSX - ALTODX - BASSOSX - BASSODX ; attenzione, da ricontrollare l'implementazione non appena e' stata definita la classe Sovrapposizione
 	 * @return
 	 */
 	public List<Carta> getSovrapposizioni(){
 		
 		List<Carta> listaSovrapposizioni = new ArrayList<Carta>();
 		
-		listaSovrapposizioni.add(sovrapposizioni.getAltoDx());
 		listaSovrapposizioni.add(sovrapposizioni.getAltoSx());
-		listaSovrapposizioni.add(sovrapposizioni.getBassoDx());
+		listaSovrapposizioni.add(sovrapposizioni.getAltoDx());
 		listaSovrapposizioni.add(sovrapposizioni.getBassoSx());
+		listaSovrapposizioni.add(sovrapposizioni.getBassoDx());
 		
 		return listaSovrapposizioni;
 	}
+	
+	
+	
+	public void setSovrapposizioni(List<Carta> sovrapp) {
+	
+		sovrapposizioni =  new Sovrapposizione(sovrapp.get(0), sovrapp.get(1), sovrapp.get(2), sovrapp.get(3));
+	}
+	
+	
 	
 	
 	/**
@@ -120,10 +130,11 @@ public class Angoli {
 		
 		int listaVisibilita[] = new int[4];
 		
-		listaVisibilita[0] = visibilita.getAltoDx();
 		listaVisibilita[1] = visibilita.getAltoSx();
-		listaVisibilita[2] = visibilita.getBassoDx();
+		listaVisibilita[0] = visibilita.getAltoDx();
 		listaVisibilita[3] = visibilita.getBassoSx();
+		listaVisibilita[2] = visibilita.getBassoDx();
+
 
 		return listaVisibilita;
 	}

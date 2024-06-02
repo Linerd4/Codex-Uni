@@ -18,4 +18,11 @@ public class CartaOro extends Carta {
     	    	
         return true;
     }
+    
+    
+    public Requisiti getRequisiti() {
+    	
+    	return requisiti;
+    }
+    
 }

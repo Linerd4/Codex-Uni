@@ -89,6 +89,11 @@ public class Carta {
 	public List<Carta> getSovrapposizioni(){
 		return angoli.getSovrapposizioni();
 	}
+	
+	public void setSovrapposizioni(List<Carta> sovrapp) {
+		
+		angoli.setSovrapposizioni(sovrapp);
+	}
 
 	
 	public Regno getRegno() {
@@ -105,6 +110,9 @@ public class Carta {
 		dati.setConsiderata(considerazione);
 	}
 	
+	public int getPunti() {
+		return dati.getPunti();
+	}
     
 }
 

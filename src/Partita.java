@@ -15,7 +15,8 @@ public class Partita {
      * @throws FileNotFoundException
      */
     public Partita(int n) throws FileNotFoundException {
-        // Crea mazzi e mazzini, e riempili
+        
+    	// Crea mazzi e mazzini, e riempili
         this.comune = new Comune();
         Scanner sc = new Scanner(System.in);   
         this.numeroGiocatori = n;
@@ -24,22 +25,36 @@ public class Partita {
         Colore colore = null;
         
         giocatori = new ArrayList<Giocatore>();
-        Set<Colore> coloriUsati = new HashSet<>();
+        List<Colore> coloriDisponibili = new ArrayList<>();
         
-        // Assegna il colore nero automaticamente al primo giocatore
-        colore = Colore.NERO;
-        giocatori.add(creaGiocatore("Primo Giocatore", colore));
-        coloriUsati.add(colore);
+        coloriDisponibili.add(Colore.BLU);
+        coloriDisponibili.add(Colore.ROSSO);
+        coloriDisponibili.add(Colore.VERDE);
+        coloriDisponibili.add(Colore.GIALLO);
         
 
-        // Permette agli altri giocatori di scegliere tra i colori rimanenti
-        for(int i = 1; i < n; i++) {
+        // Permette agli altri giocatori di scegliere tra i colori disponibili
+        for(int i = 0; i < n; i++) {
         	System.out.println("Inserisci il nome del giocatore numero " + (i + 1) + ": ");
             nome = sc.nextLine();
-            colore = scegliColore(i, coloriUsati);
+            int sceltaColore = 0;
             
-            giocatori.add(creaGiocatore(nome, colore));
-            coloriUsati.add(colore);
+            do{ 
+            	System.out.println("Scegli il colore: ");
+            
+            	for(int z = 0; z < coloriDisponibili.size(); z++) 
+            		System.out.println(z+1 + ") " + coloriDisponibili.get(z).toString());
+            	
+            	sceltaColore = Character.getNumericValue(sc.nextLine().charAt(0));
+            	
+            }	
+            while((sceltaColore < 0)||(sceltaColore > coloriDisponibili.size()));
+            
+            giocatori.add(creaGiocatore(nome, coloriDisponibili.get(sceltaColore-1)));
+            coloriDisponibili.remove(sceltaColore-1);
+            
+            
+            System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
         }
         
         classifica = new Classifica(giocatori);
@@ -64,7 +79,22 @@ public class Partita {
         dueObiettivi = comune.dueObiettiviPerGiocatore();
         
         
-        System.out.println(dueObiettivi);
+        System.out.println("\n\n");
+        
+        char[][] bufOb = new char[9][32];
+        for(int i = 0; i < 9; i++)
+        	for(int j = 0; j < 32; j++)
+        		bufOb[i][j] = ' ';
+        
+        Grafica.stampaCartaObiettivo(dueObiettivi[0], bufOb, 7, 4);
+        Grafica.stampaCartaObiettivo(dueObiettivi[1], bufOb, 24, 4);
+       
+        for(int i = 0; i < 9; i++) {
+        	for(int j = 0; j < 32; j++)
+        		System.out.print(bufOb[i][j]);
+        	System.out.println("");
+        }
+        
         String stringa = null;
         Scanner sc = new Scanner(System.in);
         
@@ -73,7 +103,6 @@ public class Partita {
         	System.out.println("Quale delle due carte obiettivo scegli?");
             System.out.println("1) La prima\n2) La seconda");
 
-            System.out.println(sc.hasNextLine());
             stringa = sc.nextLine();
         	
         }while(((Character.getNumericValue(stringa.charAt(0))) <= 0) || ((Character.getNumericValue(stringa.charAt(0))) >= 3) || (stringa == "\n"));
@@ -89,49 +118,7 @@ public class Partita {
     }
     
     
-    public Colore scegliColore(int indiceGiocatore, Set<Colore> coloriUsati) {
-        Scanner sc = new Scanner(System.in);
-        int scelta;
-        Colore coloreScelto;
-        
-        System.out.println("Giocatore " + (indiceGiocatore + 1) + ", scegli il tuo colore:");
-        
-        do {        
-            System.out.println("1. Blu");
-            System.out.println("2. Rosso");
-            System.out.println("3. Verde");
-            System.out.println("4. Giallo");
-            System.out.print("Scelta: ");
-            scelta = Character.getNumericValue(sc.nextLine().charAt(0));
-            
-            switch (scelta) {
-                case 1:
-                    coloreScelto = Colore.BLU;
-                    break;
-                    
-                case 2:
-                    coloreScelto = Colore.ROSSO;
-                    break;
-                    
-                case 3:
-                    coloreScelto = Colore.VERDE;
-                    break;
-                    
-                case 4:
-                    coloreScelto = Colore.GIALLO;
-                    break;
-                    
-                default:
-                    System.out.println("Scelta non valida. Riprova.");
-                    coloreScelto = null;
-                    break;
-            }
-            
-        } while (scelta == '\n' || coloreScelto == null || coloriUsati.contains(coloreScelto));
-        
-        
-        return coloreScelto;
-    }
+
     
 	
     public void flussoDiGioco() {
@@ -141,7 +128,11 @@ public class Partita {
 		
 		int oldGiocatore;
 
+		System.out.println("Comincia il giocatore " + giocatori.get(giocatoreCorrente).getNome());
+		
 		do {
+			
+			classifica.stampaClassifica();
 			
 			giocatori.get(giocatoreCorrente).giocaCarta();
 			giocatori.get(giocatoreCorrente).pescaCarta();

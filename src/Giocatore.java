@@ -17,12 +17,32 @@ public class Giocatore {
 
 
 	public void giocaCarta() {
-	    // Stampa il tavolo di gioco
-	    System.out.println(tavolo.getMatrice());
-	    // Stampa la carta obiettivo
-	    System.out.println(tavolo.getObiettivo());
-	    // Stampa le carte disponibili da giocare
-	    System.out.println(tavolo.getDisponibili());
+	    
+		System.out.println("Turno di " + dati.getNome());
+		
+		Grafica.stampaTavoloDiGioco(tavolo.getMatrice(), tavolo.analizzaMatrice());
+		
+		Grafica.stampaMazzini(comune.getMazzini(), comune.getObiettivi());
+		
+		
+		char[][] playBuf = new char[9][79];
+		for(int i = 0; i < 9; i++) {
+			for(int j = 0; j < 79; j++)
+				playBuf[i][j] = ' ';
+		}
+		
+		System.out.println("\n\n");
+		
+		System.out.println("             Carte risorsa possedute                       Carta obiettivo posseduta\n");
+		
+		Grafica.stampaDisponibili(tavolo.getDisponibili(), playBuf);
+		Grafica.stampaCartaObiettivo(tavolo.getObiettivo(), playBuf, 71, 4);
+		
+		for(int i = 0; i < 9; i++) {
+			for(int j = 0; j < 79; j++)
+				System.out.print(playBuf[i][j]);
+			System.out.println();
+		}
 	    
 	    Scanner sc = new Scanner(System.in);
 	    int scelta = 0;
@@ -33,18 +53,36 @@ public class Giocatore {
 	    do {
 	    	
 	    	do {
-	    		System.out.println("Quale carta vuoi giocare? (1 - 2 - 3)");
+	    		System.out.println("\n\nQuale carta vuoi giocare? (1 - 2 - 3)");
 	    		scelta = Character.getNumericValue(sc.nextLine().charAt(0));
 	    	} while( (scelta<=0) || (scelta>=4) );
 	        
 	        
 	    	do {
-	        	System.out.println("Vuoi giocarla sopra (1) oppure sotto (2)?");
+
+	    		System.out.println("\nVuoi giocarla di fronte (1) oppure di retro (2)? ");
 	        	soprasotto = Character.getNumericValue(sc.nextLine().charAt(0));
 	    	} while((soprasotto<=0) || (soprasotto>=3));
 	    		
 	    		
 	        Carta cartaScelta = tavolo.getCartaDaDisponibili(scelta - 1);
+	        
+	        if(soprasotto == 2) {
+	        	
+	        	int[] vuoto = new int[4];
+	        	List<Figura> vuotoFigura = new ArrayList<Figura>();
+	        	List<Oggetto> vuotoOggetto = new ArrayList<Oggetto>();
+	        	
+	        	for(int i = 0; i < 4; i++) {
+	        		vuoto[i] = 1;
+	        		vuotoFigura.add(Figura.NULL);
+	        		vuotoOggetto.add(Oggetto.NULL);
+	        	}
+	        	
+	        	cartaScelta.setPosizioni(vuoto);
+	        	cartaScelta.setVisibilita(vuoto);
+	        }
+	        
 	        cartaScelta.setLatoScelto(soprasotto);
 
 	        if (cartaScelta instanceof CartaOro && cartaScelta.getLatoScelto() == 1) {
@@ -61,44 +99,37 @@ public class Giocatore {
 	    } while(cartaNonValida);
 
 	    List<Point> posizioniValide = tavolo.analizzaMatrice();
-	    System.out.println(posizioniValide);
 
 	    int posizioneSceltaNellaMatrice = 0;
 	    do {
-	    	System.out.println("Dove vuoi posizionare la carta?");
+	    	System.out.println("\nDove vuoi posizionare la carta? (Inserire uno dei numeri posizionati agli angoli del proprio tavolo");
 	    	posizioneSceltaNellaMatrice = Character.getNumericValue(sc.nextLine().charAt(0));
 	    	
 	    } while((posizioneSceltaNellaMatrice<=0) || (posizioneSceltaNellaMatrice>posizioniValide.size()));
-	    	
-	    	
+
+	    
+	    if(tavolo.getCartaDaDisponibili(scelta - 1) instanceof CartaOro)
+	    	dati.setPunteggio(dati.getPunteggio() + tavolo.getCartaDaDisponibili(scelta - 1).getPunti());
+	    
+	        
 	    tavolo.posizionaCartaInMatrice(tavolo.giocaCartaDaDisponibili(scelta - 1), posizioniValide.get(posizioneSceltaNellaMatrice - 1));
 	
 	    dati.aggiornaConteggio(tavolo.getMatrice());
-	    
+	        
 	    numeroTurno++;
 	    
 	}
 
 	
 	public void pescaCarta() {
-		
-		
-		System.out.println("Queste sono le carte risorse e oro scoperte:");
-		
-		//si ok, qui stampa solo la lista di indirizzi
-		// va fatta la grafica che stampa tutte e quattro le carte
-		System.out.println(comune.getMazzini());
-		
-//		if(comune.getMazzini().size() > 3)
-//			System.out.println("Attenzione, il giocatore ha piu di quattro carte!");
-		
+				
 		Scanner sc = new Scanner(System.in);
 		String scelta = null; 
 		
 		
 		do {
 			
-			System.out.println("Da quale mazzo vuoi pescare? Da\n1) Mazzo Risorsa\n2) Mazzo Oro\n3) Prendi una delle due carte risorsa scoperte\n4) Prendi una delle due carte oro scoperte");
+			System.out.println("\nDa quale mazzo vuoi pescare? Da\n1) Mazzo Risorsa\n2) Mazzo Oro\n3) Prendi una delle due carte risorsa scoperte\n4) Prendi una delle due carte oro scoperte");
 			scelta = sc.nextLine();
 			
 			switch(Character.getNumericValue(scelta.charAt(0))) {
@@ -327,9 +358,29 @@ public class Giocatore {
 				CartaIniziale iniz = (CartaIniziale) comune.assegnaCartaIniziale();
 				int latoscelto = 0;
 				
+				char[][] bufIniz = new char[9][32];
+				for(int z = 0; z < 9; z++)
+					for(int y = 0; y < 32; y++)
+						bufIniz[z][y] = ' ';
+				
+				
+				System.out.println("       (1)              (2)");
+				Grafica.stampaCartaIniziale(iniz, bufIniz, 4, 7);
+				iniz.setLatoScelto(1);
+				Grafica.stampaCartaIniziale(iniz, bufIniz, 4, 24);
+				iniz.setLatoScelto(0);
+				
+				for(int z = 0; z < 9; z++) {
+					for(int y = 0; y < 32; y++)
+						System.out.print(bufIniz[z][y]);
+					System.out.print("\n");
+				}
+				
+				
 				do {
-					System.out.println("Questa e' la tua carta iniziale: " + iniz);
-					System.out.println("Vuoi giocare la carta sul fronte (1) o sul retro (2)?");
+					//Stampa la carta iniziale, sia fronte che retro
+					
+					System.out.println("Vuoi giocare la carta iniziale sul fronte (1) o sul retro (2)?");
 					
 					String temp = sc.nextLine();
 					
@@ -345,4 +396,14 @@ public class Giocatore {
 				break;		
 		}
 	}
+	
+	
+	
+	
+	public void setPunteggio(int punt) {
+		
+		dati.setPunteggio(punt);
+	}
+	
+	
 }

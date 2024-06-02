@@ -47,6 +47,7 @@ public class Tavolo {
 		return disponibili.get(scelta);
 	}
 	
+	
 	/**
 	 * Scegli quale carta delle disponibili vuoi giocare.
 	 * @param scelta
@@ -86,28 +87,59 @@ public class Tavolo {
 	
 		if(matrice[x-1][y-1] != null) {
 			
-			int[] pos = matrice[x-1][y-1].getPosizioni();	
+			List<Carta> sovrapp = matrice[x-1][y-1].getSovrapposizioni();
+			sovrapp.set(3, matrice[x][y]);
+			matrice[x-1][y-1].setSovrapposizioni(sovrapp);
+			List<Carta> sovrapp2 = matrice[x][y].getSovrapposizioni();
+			sovrapp2.set(0, matrice[x-1][y-1]);
+			carta.setSovrapposizioni(sovrapp2);
+			
+
+			int[] pos = matrice[x-1][y-1].getPosizioni();
 			pos[3] = 0;	
 			matrice[x-1][y-1].setPosizioni(pos);			
 		}
 		
 		if(matrice[x-1][y+1] != null) {
 			
-			int[] pos = matrice[x-1][y+1].getPosizioni();	
+			List<Carta> sovrapp = matrice[x-1][y+1].getSovrapposizioni();
+			sovrapp.set(2, matrice[x][y]);	
+			matrice[x-1][y+1].setSovrapposizioni(sovrapp);
+			List<Carta> sovrapp2 = matrice[x][y].getSovrapposizioni();
+			sovrapp2.set(1, matrice[x-1][y+1]);	
+			carta.setSovrapposizioni(sovrapp2);
+			
+			int[] pos = matrice[x-1][y+1].getPosizioni();
 			pos[2] = 0;	
 			matrice[x-1][y+1].setPosizioni(pos);			
 		}
 		
 		if(matrice[x+1][y-1] != null) {
 			
-			int[] pos = matrice[x+1][y-1].getPosizioni();	
+				
+			List<Carta> sovrapp = matrice[x+1][y-1].getSovrapposizioni();
+			sovrapp.set(1, matrice[x][y]);
+			matrice[x+1][y-1].setSovrapposizioni(sovrapp);
+			List<Carta> sovrapp2 = matrice[x][y].getSovrapposizioni();
+			sovrapp2.set(2, matrice[x+1][y-1]);
+			carta.setSovrapposizioni(sovrapp2);
+			
+			int[] pos = matrice[x+1][y-1].getPosizioni();
 			pos[1] = 0;	
 			matrice[x+1][y-1].setPosizioni(pos);			
 		}
 		
 		if(matrice[x+1][y+1] != null) {
 			
-			int[] pos = matrice[x+1][y+1].getPosizioni();	
+				
+			List<Carta> sovrapp = matrice[x+1][y+1].getSovrapposizioni();
+			sovrapp.set(0, matrice[x][y]);
+			matrice[x+1][y+1].setSovrapposizioni(sovrapp);
+			List<Carta> sovrapp2 = matrice[x][y].getSovrapposizioni();
+			sovrapp.set(3, matrice[x+1][y+1]);
+			carta.setSovrapposizioni(sovrapp2);
+			
+			int[] pos = matrice[x+1][y+1].getPosizioni();
 			pos[0] = 0;	
 			matrice[x+1][y+1].setPosizioni(pos);			
 		}
@@ -190,9 +222,9 @@ public class Tavolo {
 		
 		if(matrice[i-1][j-1] == null) 							// controlla l'angolo in alto a sinistra
 			posizionabile = true;								// dunque analizza gli attributi in basso a destra
-		else if (matrice[i-1][j-1].getVisibilita()[2] == 0)		// della carta in alto a sinistra
+		else if (matrice[i-1][j-1].getVisibilita()[3] == 0)		// della carta in alto a sinistra
 			posizionabile = false;
-		else if (matrice[i-1][j-1].getVisibilita()[2] == 1) {
+		else if (matrice[i-1][j-1].getVisibilita()[3] == 1) {
 			posizionabile = true;
 		}	
 			
@@ -202,9 +234,9 @@ public class Tavolo {
 		
 		if(matrice[i-1][j+1] == null) 							// controlla l'angolo in alto a destra
 			posizionabile = true;								// dunque analizza gli attributi in basso a sinistra
-		else if (matrice[i-1][j+1].getVisibilita()[3] == 0)		// della carta da analizzare
+		else if (matrice[i-1][j+1].getVisibilita()[2] == 0)		// della carta da analizzare
 			posizionabile = false;
-		else if (matrice[i-1][j+1].getVisibilita()[3] == 1) {
+		else if (matrice[i-1][j+1].getVisibilita()[2] == 1) {
 			posizionabile = true;
 
 		}
@@ -215,9 +247,9 @@ public class Tavolo {
 		
 		if(matrice[i+1][j-1] == null) 							// controlla l'angolo in basso a sinistra
 			posizionabile = true;								// dunque analizza gli attributi in alto a destra
-		else if (matrice[i+1][j-1].getVisibilita()[0] == 0)		// della carta da analizzare
+		else if (matrice[i+1][j-1].getVisibilita()[1] == 0)		// della carta da analizzare
 			posizionabile = false;
-		else if (matrice[i+1][j-1].getVisibilita()[0] == 1) {
+		else if (matrice[i+1][j-1].getVisibilita()[1] == 1) {
 			posizionabile = true;
 		}
 		
@@ -227,9 +259,9 @@ public class Tavolo {
 	
 		if(matrice[i+1][j+1] == null) 							// controlla l'angolo in basso a destra
 			posizionabile = true;								// dunque analizza gli attributi in alto a sinistra
-		else if (matrice[i+1][j+1].getVisibilita()[1] == 0)		// della carta da analizzare
+		else if (matrice[i+1][j+1].getVisibilita()[0] == 0)		// della carta da analizzare
 			posizionabile = false;
-		else if (matrice[i+1][j+1].getVisibilita()[1] == 1) {
+		else if (matrice[i+1][j+1].getVisibilita()[0] == 1) {
 			posizionabile = true;
 	
 		}
