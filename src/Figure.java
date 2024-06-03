@@ -30,5 +30,29 @@ public class Figure {
     public Figura getFigura_bassodx() {
         return figura_bassodx;
     }
+    
+    
+    public void setFigura_altosx(Figura figuraAltoSx) {
+    	figura_altosx = figuraAltoSx;
+    	
+    }
+    
+    
+    public void setFigura_altodx(Figura figuraAltoDx) {
+    	figura_altodx = figuraAltoDx;
+    	
+    }
+
+
+   	public void setFigura_bassosx(Figura figuraBassoSx) {
+   		figura_bassosx = figuraBassoSx;
+	
+   	}
+
+
+   	public void setFigura_bassodx(Figura figuraBassoDx) {
+   		figura_bassodx = figuraBassoDx;
+	
+   	}
 
 }

@@ -164,5 +164,26 @@ public class Angoli {
 		posizioni.setBassoSx(pos[2]);
 		posizioni.setBassoDx(pos[3]);
 	}
+
+
+	public void setOggetti(List<Oggetto> oggetti2) {
+		oggetti.setOggetto_altosx(oggetti2.get(0));
+		oggetti.setOggetto_altodx(oggetti2.get(1));
+		oggetti.setOggetto_bassosx(oggetti2.get(2));
+		oggetti.setOggetto_bassodx(oggetti2.get(3));
+		
+	}
+
+
+	public void setFigure(List<Figura> figure2) {
+		
+		figure.setFigura_altosx(figure2.get(0));
+		figure.setFigura_altodx(figure2.get(1));
+		figure.setFigura_bassosx(figure2.get(2));
+		figure.setFigura_bassodx(figure2.get(3));
+	
+	}
+	
+		
 	
 }

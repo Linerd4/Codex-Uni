@@ -42,8 +42,7 @@ public class Conteggio {
 					
 					carta = matrice[i][j];
 					
-
-					
+									
 					List<Oggetto> oggetti = carta.getOggetti();
 					List<Figura> figure = carta.getFigure();
 					int[] visibil = carta.getVisibilita();
@@ -96,6 +95,35 @@ public class Conteggio {
 					    	}							
 						}
 					}	
+					
+					if(carta instanceof CartaIniziale) {
+						
+						Figura[] figurecentrali = ((CartaIniziale) carta).getFigureFrontali();
+						
+						for(int c = 0; c < figurecentrali.length; c++) {
+							
+							switch (figurecentrali[c]) {
+								case FARFALLA:
+									tempFarfalle++;
+									break;
+				                
+								case FOGLIA:
+									tempFoglie++;
+									break;
+				                
+								case FUNGO:
+									tempFunghi++;
+									break;
+				                
+								case LUPO:
+									tempLupi++;
+				                	break;
+				                
+								default:
+									break;
+							}
+						}						
+					}
 				}
 			}
 		}

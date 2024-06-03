@@ -64,8 +64,26 @@ public class Giocatore {
 	        	soprasotto = Character.getNumericValue(sc.nextLine().charAt(0));
 	    	} while((soprasotto<=0) || (soprasotto>=3));
 	    		
-	    		
-	        Carta cartaScelta = tavolo.getCartaDaDisponibili(scelta - 1);
+	    	
+	    	Carta cartaScelta = tavolo.getCartaDaDisponibili(scelta - 1);
+	        
+	    	
+	    	if (cartaScelta instanceof CartaOro && cartaScelta.getLatoScelto() == 1) {
+	            CartaOro cartaOro = (CartaOro) cartaScelta;
+	            
+	            dati.aggiornaConteggio(tavolo.getMatrice());
+	            
+	            if (!cartaOro.verificaRequisiti(dati.getFigure())) {
+	                System.out.println("Il lato scelto della carta oro non soddisfa i requisiti. Gioca l'altro lato oppure scegli una carta risorsa.");
+	                cartaNonValida = true;
+	                continue;
+	            } else {
+	                cartaNonValida = false;
+	            }
+	        } else {
+	            cartaNonValida = false;
+	        }
+ 	
 	        
 	        if(soprasotto == 2) {
 	        	
@@ -79,23 +97,16 @@ public class Giocatore {
 	        		vuotoOggetto.add(Oggetto.NULL);
 	        	}
 	        	
+	        	cartaScelta.setFigure(vuotoFigura);
+	        	cartaScelta.setOggetti(vuotoOggetto);
+	        	
 	        	cartaScelta.setPosizioni(vuoto);
 	        	cartaScelta.setVisibilita(vuoto);
 	        }
 	        
 	        cartaScelta.setLatoScelto(soprasotto);
 
-	        if (cartaScelta instanceof CartaOro && cartaScelta.getLatoScelto() == 1) {
-	            CartaOro cartaOro = (CartaOro) cartaScelta;
-	            if (!cartaOro.verificaRequisiti(dati.getFigure())) {
-	                System.out.println("Il lato scelto della carta oro non soddisfa i requisiti. Gioca l'altro lato oppure scegli una carta risorsa.");
-	                cartaNonValida = true;
-	            } else {
-	                cartaNonValida = false;
-	            }
-	        } else {
-	            cartaNonValida = false;
-	        }
+	        
 	    } while(cartaNonValida);
 
 	    List<Point> posizioniValide = tavolo.analizzaMatrice();
@@ -365,11 +376,13 @@ public class Giocatore {
 				
 				
 				System.out.println("       (1)              (2)");
-				Grafica.stampaCartaIniziale(iniz, bufIniz, 4, 7);
-				iniz.setLatoScelto(1);
-				Grafica.stampaCartaIniziale(iniz, bufIniz, 4, 24);
 				iniz.setLatoScelto(0);
 				
+				Grafica.stampaCartaIniziale(iniz, bufIniz, 4, 7);
+				iniz.setLatoScelto(1);
+				
+				Grafica.stampaCartaIniziale(iniz, bufIniz, 4, 24);
+								
 				for(int z = 0; z < 9; z++) {
 					for(int y = 0; y < 32; y++)
 						System.out.print(bufIniz[z][y]);

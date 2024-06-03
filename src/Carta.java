@@ -39,6 +39,19 @@ public class Carta {
     }
     
     
+    public void setFigure(List<Figura> figure) {
+    	
+    	angoli.setFigure(figure);
+    }
+    
+    
+    public void setOggetti(List<Oggetto> oggetti) {
+    	
+    	angoli.setOggetti(oggetti);
+    	
+    }
+    
+    
     /**
      * Ritorna la lista degli oggetti presenti agli angoli.
      * @return

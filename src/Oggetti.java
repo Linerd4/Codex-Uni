@@ -39,5 +39,24 @@ public class Oggetti {
     public Oggetto getOggetto_bassodx() {
         return oggetto_bassodx;
     }
+    
+    
+    public void setOggetto_altosx(Oggetto altosx) {
+    	oggetto_altosx = altosx;
+    }
+    
+    
+    public void setOggetto_altodx(Oggetto altodx) {
+    	oggetto_altodx = altodx;
+    }
+    
+    public void setOggetto_bassosx(Oggetto bassosx) {
+    	oggetto_bassosx = bassosx;
+    }
+    
+    
+    public void setOggetto_bassodx(Oggetto bassodx) {
+    	oggetto_bassodx = bassodx;
+    }
 
 }

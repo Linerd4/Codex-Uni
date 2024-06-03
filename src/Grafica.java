@@ -450,7 +450,7 @@ public class Grafica {
 		
 		
 		//stampami solo il riquadro esterno dell'angolo in alto a sinistra
-		if((carta.getVisibilita()[0] == 1)&&(carta.getPosizioni()[0] == 1)) {
+		if(((carta.getVisibilita()[0] == 1)&&(carta.getPosizioni()[0] == 1)) || ((carta.getSovrapposizioni().get(0) == null)&&(carta.getVisibilita()[0] == 1))){
 			
 			buffer[posCentraleRighe - 3][posCentraleColonne - 5] = '|';
 			buffer[posCentraleRighe - 2][posCentraleColonne - 6] = '-';
@@ -461,7 +461,7 @@ public class Grafica {
 		
 		
 		//stampami solo il riquadro esterno dell'angolo in alto a destra
-		if((carta.getVisibilita()[1] == 1)&&(carta.getPosizioni()[1] == 1)) {
+		if(((carta.getVisibilita()[1] == 1)&&(carta.getPosizioni()[1] == 1)) || ((carta.getSovrapposizioni().get(1) == null)&&(carta.getVisibilita()[1] == 1))) {
 			
 			buffer[posCentraleRighe - 3][posCentraleColonne + 5] = '|';
 			buffer[posCentraleRighe - 2][posCentraleColonne + 6] = '-';
@@ -470,7 +470,7 @@ public class Grafica {
 		}
 		
 		//stampami solo il riquadro esterno dell'angolo in basso a sinistra
-		if((carta.getVisibilita()[2] == 1)&&(carta.getPosizioni()[2] == 1)) {
+		if(((carta.getVisibilita()[2] == 1)&&(carta.getPosizioni()[2] == 1))|| ((carta.getSovrapposizioni().get(2) == null)&&(carta.getVisibilita()[2] == 1))) {
 			
 			buffer[posCentraleRighe + 3][posCentraleColonne - 5] = '|';
 			buffer[posCentraleRighe + 2][posCentraleColonne - 6] = '-';
@@ -480,7 +480,7 @@ public class Grafica {
 		
 		
 		//stampami solo il riquadro esterno dell'angolo in basso a destra
-		if((carta.getVisibilita()[3] == 1)&&(carta.getPosizioni()[3] == 1)) {
+		if(((carta.getVisibilita()[3] == 1)&&(carta.getPosizioni()[3] == 1))|| ((carta.getSovrapposizioni().get(3) == null)&&(carta.getVisibilita()[3] == 1))) {
 					
 				buffer[posCentraleRighe + 3][posCentraleColonne + 5] = '|';
 				buffer[posCentraleRighe + 2][posCentraleColonne + 6] = '-';
