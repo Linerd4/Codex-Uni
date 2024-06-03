@@ -217,7 +217,7 @@ public class Partita {
 		
 		classifica.ordinaClassifica();
 		
-		System.out.println("Il giocatore vincitore e'" + classifica.getGiocatore(0) + "!");
+		System.out.println("Il giocatore vincitore e'" + classifica.getGiocatore(0).getNome() + "!");
 		
 		return;
 	}
